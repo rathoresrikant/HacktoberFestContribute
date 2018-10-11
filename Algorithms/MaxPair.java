@@ -1,5 +1,8 @@
 package main;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MaxPair {
 
 	public static class Pair
@@ -36,14 +39,14 @@ public class MaxPair {
 		}
 	}
 	
-	public static Pair getMaxPair(Pair[] input) {
-		if (input == null || input.length < 1)
+	public static Pair getMaxPair(List<Pair> input) {
+		if (input == null || input.isEmpty())
 			return null;
 		
-		Pair max =  input[0];
+		Pair max =  input.get(0);
 		
-		for (int i = 1; i < input.length; i++) {
-			Pair current = input[i];
+		for (int i = 1; i < input.size(); i++) {
+			Pair current = input.get(i);
 			if (current.getSum() > max.getSum())
 				max = current;
 		}
@@ -52,12 +55,12 @@ public class MaxPair {
 	}
 	
 	public static void main(String[] args) {
-		Pair[] input = new Pair[] {
+		List<Pair> input = Arrays.asList(
 				new Pair(0, 2), 
 				new Pair(5, 2), 
 				new Pair(3, 2), 
 				new Pair(5, 2), 
-				new Pair(-1, 2)}; 
+				new Pair(-1, 2)); 
 		
 		
 		Pair max = getMaxPair(input);
