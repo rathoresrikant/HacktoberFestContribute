@@ -1,28 +1,52 @@
 #include <iostream>
-#include <math.h>
+
 using namespace std;
+
+//Function name: getRaiseAndAdd
+//Purpose: Calculate each digit cubed and the sum of the results.
+//We are sending in the current number from the loop starting at 100 and
+//counting one by one to 999.
+//Parameters: &numberInput
+//Return value: Result of adding 3 numbers
+int getRaiseAndAdd(int &numberInput)
+{
+int firstNumber, secondNumber, thirdNumber;
+int remainder;
+int sum;
+int firstPower, secondPower, thirdPower;
+
+firstNumber = numberInput / 100;
+remainder = numberInput % 100;
+secondNumber = remainder / 10;
+thirdNumber = remainder % 10;
+
+firstPower = firstNumber * firstNumber * firstNumber;
+secondPower = secondNumber *secondNumber * secondNumber;
+thirdPower = thirdNumber * thirdNumber * thirdNumber;
+
+return sum = firstPower + secondPower + thirdPower;
+}
 
 int main()
 {
-    for(int i = 0;i <= 10000;++i)
-    {
-        int r = i;
-        int dig = 0;
-        while(r != 0)
+int answer;
+int originalNumber;
+
+for(int i = 100; i < 1000; i++)
+originalNumber = i;
+
+answer = getRaiseAndAdd(i);
         {
-            dig++;
-            r /= 10;
+        //Function name: is_Armstrong
+        //Purpose: finding the Armstrong numbers
+        //Parameters: answer
+        //Return value: 0
+        bool is_Armstrong (int answer);
+        if(answer == originalNumber);
+                {
+                cout << "found an Armstrong number " << originalNumber << endl;
+                }
         }
-        int n = i, sum = 0;
-        while(n != 0)
-        {
-            int d = n % 10;
-            sum += pow(d, dig);
-            n /= 10;
-        }
-        if(sum == i)
-            cout << i << ' ';
-    }
-    cout << "\n\n\n";
-    return 0;
+
+return 0;
 }
