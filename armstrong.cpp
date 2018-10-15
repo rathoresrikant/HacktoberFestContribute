@@ -1,23 +1,28 @@
 #include <iostream>
-#include <cmath>
- 
-int main()  
+#include <math.h>
+using namespace std;
+
+int main()
 {
-    int sum, val;
- 
-    std::cout << "Armstrong numbers => ";
-    for(int i = 0; i < 10; i++)
+    for(int i = 0;i <= 10000;++i)
     {
-        for(int j = 0; j < 10; j++)
+        int r = i;
+        int dig = 0;
+        while(r != 0)
         {
-            for(int k = 0; k < 10; k++)
-            {
-                val = i * 100 + j * 10 + k;
-                sum = pow(i, 3) + pow(j, 3) + pow(k, 3);
-                if(val == sum)
-                    std::cout << val << "  ";
-            }
+            dig++;
+            r /= 10;
         }
+        int n = i, sum = 0;
+        while(n != 0)
+        {
+            int d = n % 10;
+            sum += pow(d, dig);
+            n /= 10;
+        }
+        if(sum == i)
+            cout << i << ' ';
     }
-    std::cout << std::endl;
+    cout << "\n\n\n";
+    return 0;
 }
