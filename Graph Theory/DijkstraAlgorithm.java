@@ -98,5 +98,6 @@ class DijkstraAlgorithm
                                  }; 
         DijkstraAlgorithm t = new DijkstraAlgorithm(); 
         t.dijkstra(graph, 0); 
+      //like it
     } 
 } 
