@@ -17,9 +17,9 @@ int main()
 	cout << "Input string: ";
 	cin >> theString;
 
-	for (int i = theString.size() - 1; i >= 0; i--)
+	for (int i = theString.size(); i >= 0; i--)
 	{
-		for (int j = theString.size() - 1; j >= 0; j--)
+		for (int j = theString.size(); j >= 0; j--)
 		{
 			if (i != j && theString[i] == theString[j])
 			{
