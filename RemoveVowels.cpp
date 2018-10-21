@@ -1,22 +1,31 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-int main() {
-	// your code goes here
-	string check, vowels, ans;
-	int i, j;
-	vowels = "aeiou";
-	ans = "";
-	cin >> check;
-	transform(check.begin(), check.end(), check.begin(), ::tolower);
-	for (i = 0; i < check.size(); i++) {
-		for (j = 0; j < vowels.size(); j++) {
-			if (check[i] == vowels[j])
-				break;
+/* C++ Program - Delete Vowels from String */
+		
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+void main()
+{
+	clrscr();
+	char str[20];
+	int len, i, j;
+	cout<<"Enter a string : ";
+	gets(str);
+	len=strlen(str);
+	for(i=0; i<len; i++)
+	{
+		if(str[i]=='a' || str[i]=='e' || str[i]=='i' ||
+		str[i]=='o' || str[i]=='u' || str[i]=='A' ||
+		str[i]=='E' || str[i]=='I' || str[i]=='O' ||
+		str[i]=='U')
+		{
+			for(j=i; j<len; j++)
+			{
+				str[j]=str[j+1];
+			}
+		len--;
 		}
-		if(j == vowels.size())
-			ans += check[i];
 	}
-	cout << "String without vowels: " << ans << endl;
-	return 0;
+	cout<<"After deleting the vowels, the string will be : "<<str;
+	getch();
 }
