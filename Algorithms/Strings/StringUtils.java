@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class StringUtil
+public class StringUtils
 {
   public static List<Character> getSortedCommonChars(String a, String b)
   {
