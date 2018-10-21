@@ -3,7 +3,7 @@
 /*remove the vowels from string and return the new len
 */
 //fist arg the string second is the len of the string(without the '\0')
-int removeVowel(char str,int len)
+int removeVowel(char* str,int len)
 {
   if(len == 0 || str[0] =='\0')
     return 0;
