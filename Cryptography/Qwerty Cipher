@@ -1,0 +1,266 @@
+import java.util.*;
+class Myci
+{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        char[] ch;
+        //Layout of Qwerty Keyboard 
+        char a[] = new char[13];
+        a[0]='`';a[1]='1';a[2]='2';a[3]='3';a[4]='4';a[5]='5';a[6]='6';a[7]='7';a[8]='8';a[9]='9';a[10]='0';a[11]='-';a[12]='=';
+        char[] c = new char[13];
+        c[0]='q';c[1]='w';c[2]='e';c[3]='r';c[4]='t';c[5]='y';c[6]='u';c[7]='i';c[8]='o';c[9]='p';c[10]='[';c[11]=']';c[12]='\\'; 
+        char b[] = new char[13];
+        b[0]='a';b[1]='s';b[2]='d';b[3]='f';b[4]='g';b[5]='h';b[6]='j';b[7]='k';b[8]='l';b[9]=';';b[10]='\'';
+        char[] d = new char[10];
+        d[0]='z';d[1]='x';d[2]='c';d[3]='v';d[4]='b';d[5]='n';d[6]='m';d[7]=',';d[8]='.';d[9]='/';
+        char sa[] = new char[13];
+        sa[0]='~';sa[1]='!';sa[2]='@';sa[3]='#';sa[4]='$';sa[5]='%';sa[6]='^';sa[7]='&';sa[8]='*';sa[9]='(';sa[10]='0';sa[11]='_';sa[12]='+';
+        char[] sc = new char[13];
+        sc[0]='Q';sc[1]='W';sc[2]='E';sc[3]='R';sc[4]='T';sc[5]='Y';sc[6]='U';sc[7]='I';sc[8]='O';sc[9]='P';sc[10]='{';sc[11]='}';sc[12]='|'; 
+        char sb[] = new char[13];
+        sb[0]='A';sb[1]='S';sb[2]='D';sb[3]='F';sb[4]='G';sb[5]='H';sb[6]='J';sb[7]='K';sb[8]='L';sb[9]=':';sb[10]='"';
+        char[] sd = new char[10];
+        sd[0]='Z';sd[1]='X';sd[2]='C';sd[3]='V';sd[4]='B';sd[5]='N';sd[6]='M';sd[7]='<';sd[8]='>';sd[9]='?';        
+        System.out.println("########  Qwerty Cipher  ########");
+        while(1>0){
+        System.out.println("1. Encrypt");
+        System.out.println("2. Decrypt");
+        System.out.println("3. Exit");
+        String num = input.nextLine();
+        switch(num) {
+            //Encryption of the Text
+            case   "1":  
+            {    
+                System.out.print("Enter Text to Encrypt\n");
+                String s = input.nextLine();
+                ch = new char[s.length()];
+                for(int i = 0;i<s.length();i++)
+                {
+                    ch[i]=s.charAt(i);
+                }
+                for(int i=0;i<s.length();i++)
+                {
+                    for(int j = 0;j<a.length-1;j++)
+                    { 
+                        if(ch[i]==a[j])
+                        {
+                            ch[i]=a[j+1];
+                            break;
+                        }
+                        else if(ch[i]==sa[j])
+                        {
+                            ch[i]=sa[j+1];
+                            break;
+                        }
+                        else if(ch[i]=='=')
+                        {
+                            ch[i]=a[0];
+                            break;
+                        }
+                        else if(ch[i]=='+')
+                        {
+                            ch[i]=sa[0];
+                            break;
+                        }
+                        else if(ch[i]==' ')
+                        {
+                            ch[i]=' ';
+                            break;
+                        }
+                    }
+                    for(int j = 0;j<b.length-1;j++)
+                    { 
+                        if(ch[i]==b[j])
+                        {
+                            ch[i]=b[j+1];
+                            break;   
+                        }
+                        else if(ch[i]==sb[j])
+                        {
+                            ch[i]=sb[j+1];
+                            break;
+                        }
+                        else if(ch[i]=='\'')//last button of the row
+                        {
+                            ch[i]=b[0];
+                            break;
+                        }
+                        else if(ch[i]=='"')//shift last button of the row
+                        {
+                            ch[i]=sb[0];
+                            break;
+                        }
+
+                    }
+                    for(int j = 0;j<c.length-1;j++)
+                    { 
+                        if(ch[i]==c[j])
+                        {
+                            ch[i]=c[j+1];
+                            break;   
+                        }
+                        else if(ch[i]==sc[j])
+                        {
+                            ch[i]=sc[j+1];
+                            break;
+                        }
+                        else if(ch[i]=='\\')
+                        {
+                            ch[i]=c[0];
+                            break;
+                        }
+                        else if(ch[i]=='|')
+                        {
+                            ch[i]=sc[0];
+                            break;
+                        }
+                    }
+                    for(int j = 0;j<d.length-1;j++)
+                    { 
+                        if(ch[i]==d[j])
+                        {
+                            ch[i]=d[j+1];
+                            break;   
+                        }
+                        else if(ch[i]==sd[j])
+                        {
+                            ch[i]=sd[j+1];
+                            break;
+                        }
+                        else if(ch[i]=='/')
+                        {
+                            ch[i]=d[0];
+                            break;
+                        }
+                        else if(ch[i]=='?')
+                        {
+                            ch[i]=sd[0];
+                            break;
+                        }
+                    }
+                }
+            }
+            System.out.println(ch);break;
+            case "2": //Decryption Begins
+            {
+                System.out.print("Enter Text to Decrypt\n");
+                String s = input.nextLine();
+                ch = new char[s.length()];
+                for(int i = 0;i<s.length();i++)
+                {
+                    ch[i]=s.charAt(i);
+                }
+                for(int i=0;i<s.length();i++)
+                {
+                    for(int j = 1;j<a.length;j++)
+                    { 
+                        if(ch[i]==a[j])
+                        {
+                            ch[i]=a[j-1];
+                            break;
+                        }
+                        else if(ch[i]==sa[j])
+                        {
+                            ch[i]=sa[j-1];
+                            break;
+                        }
+                        else if(ch[i]=='`')
+                        {
+                            ch[i]=a[a.length-1];
+                            break;
+                        }
+                        else if(ch[i]=='~')
+                        {
+                            ch[i]=sa[sa.length-1];
+                            break;
+                        }
+                        else if(ch[i]==' ')
+                        {
+                            ch[i]=' ';
+                            break;
+                        }
+                    }
+                    for(int j = 1;j<b.length;j++)
+                    { 
+                        if(ch[i]==b[j])
+                        {
+                            ch[i]=b[j-1];
+                            break;   
+                        }
+                        else if(ch[i]==sb[j])
+                        {
+                            ch[i]=sb[j-1];
+                            break;
+                        }
+                        else if(ch[i]=='\'')
+                        {
+                            ch[i]=b[b.length-1];
+                            break;
+                        }
+                        else if(ch[i]=='"')
+                        {
+                            ch[i]=sb[sb.length-1];
+                            break;
+                        }
+                    }
+                    for(int j = 1;j<c.length;j++)
+                    { 
+                        if(ch[i]==c[j])
+                        {
+                            ch[i]=c[j-1];
+                            break;   
+                        }
+                        else if(ch[i]==sc[j])
+                        {
+                            ch[i]=sc[j-1];
+                            break;
+                        }
+                        else if(ch[i]=='\\')
+                        {
+                            ch[i]=c[c.length-1];
+                            break;
+                        }
+                        else if(ch[i]=='|')
+                        {
+                            ch[i]=sc[sc.length-1];
+                            break;
+                        }
+                    }
+                    for(int j = 1;j<d.length;j++)
+                    { 
+                        if(ch[i]==d[j])
+                        {
+                            ch[i]=d[j-1];
+                            break;   
+                        }
+                        else if(ch[i]==sd[j])
+                        {
+                            ch[i]=sd[j-1];
+                            break;
+                        }
+                        else if(ch[i]=='/')
+                        {
+                            ch[i]=d[d.length-1];
+                            break;
+                        }
+                        else if(ch[i]=='?')
+                        {
+                            ch[i]=sd[sd.length-1];
+                            break;
+                        }
+                    }
+                
+                }
+                System.out.println(ch);             
+                break;
+            }
+            case "3":
+                System.exit(0);
+            default:
+                System.out.print("Choose Correct Option\n");
+                break;
+        }
+       }
+          
+    }
+}
