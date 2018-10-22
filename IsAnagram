@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Angrams {
+
+	private static Scanner scn;
+
+	private static ArrayList<Character> createList(String s) {
+		s = s.toUpperCase();
+		ArrayList<Character> chars = new ArrayList<>();
+		for (char ch : s.toCharArray()) {
+			chars.add(ch);
+		}
+		return chars;
+	}
+
+	private static boolean AreTheyAngram(String string1, String string2) {
+		boolean isAngram = false;
+		ArrayList<Character> list1;
+		ArrayList<Character> list2;
+
+		list1 = createList(string1);
+		list2 = createList(string2);
+
+		if (list1.equals(list2) == true) {
+			isAngram = true;
+		}
+		return isAngram;
+	}
+
+	public static void main(String[] args) {
+		scn = new Scanner(System.in);
+		System.out.println("Please enter string1: ");
+		String string1 = scn.nextLine();
+		System.out.println("Please enter string2: ");
+		String string2 = scn.nextLine();
+
+		ArrayList<Character> list1;
+		ArrayList<Character> list2;
+
+		list1 = createList(string1);
+		list2 = createList(string2);
+
+		boolean result = AreTheyAngram(string1, string2);
+		if (result == true) {
+			System.out.println("They are angrams.");
+		} else {
+			System.out.println("They are not angrams.");
+		}
+
+	}
+
+}
