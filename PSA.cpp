@@ -97,10 +97,11 @@ int main() {
   delete wt;
   tat = nullptr;
   delete tat;
-  return 0;
+  pr = nullptr;
   delete pr;
-  return 0;
+  p = nullptr;
   delete p;
+  
   return 0;
 }
 
