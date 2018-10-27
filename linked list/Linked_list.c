@@ -3,10 +3,10 @@
 
 //Structure for the linked list
 struct node{
-int roll_no;
-char name[70];
-float cgpa;
-struct node *next;
+    int roll_no;
+    char name[70];
+    float cgpa;
+    struct node *next;
 };
 
 //Pointer to the start
@@ -246,6 +246,31 @@ void display()
         }
     }
 }
+
+// Function to check the length of linklist 
+int LinkedListLength(struct node* head) 
+{ 
+    int length = 0;
+    while (head && head->next) 
+    { 
+        head = head->next->next; 
+        length += 2;
+    } 
+    if (!head) 
+        return length; 
+    return length + 1; 
+
+}
+
+// Function to check if the length of linklist is odd or even
+int  LinkedListLengthIsEven(struct node* head)
+{
+    int length = LinkedListLength(head);
+    if (length % 2) return 0;
+    return 1;
+
+}
+
 //Main
 void main()
 {
