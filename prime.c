@@ -1,17 +1,17 @@
 #include<stdio.h>
 main()
 {
-    int num,i,j,sum;
+    int num,i,j,C;
     scanf("%d",&num);
     for(i=2;i<num;i++)
     {
-        sum=0;
-        for(j=1;j<=i;j++)
+        C=0;
+        for(j=2;j<=i/2;j++)
         {
             if(i%j==0)
-            sum++;
+            C++;
         }
-        if(sum==2)
+        if(C==0)
         printf("%d ",i);
     }
     
