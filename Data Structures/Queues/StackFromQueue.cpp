@@ -5,7 +5,7 @@ using namespace std;
 class Stack 
 {  
     // Two inbuilt queues 
-    queue<int> q1, q2; 
+    queue<int> q1, q2; //by default,private
       
     // To maintain current number of 
     // elements 
@@ -22,36 +22,55 @@ class Stack
         curr_size++; 
   
         // Push x first in empty q2 
-        q2.push(x); 
+        
   
-        // Push all the remaining  
-        // elements in q1 to q2.  
-        while (!q1.empty()) 
-        { 
-            q2.push(q1.front()); 
-            q1.pop(); 
-        } 
-  
-        // swap the names of two queues 
-        queue<int> q = q1; 
-        q1 = q2; 
-        q2 = q; 
+        if(q1.empty()==true)
+        {
+          q1.push(x);
+          while(q2.empty()==false)
+          {
+            int m=q2.front();
+            q1.push(m);
+            q2.pop();
+          }
+        }
+      else if(q2.empty()==true)
+      {
+        q2.push(x);
+        while(q1.empty()==false)
+        {
+          int m=q1.front();
+          q2.push(m);
+          q1.pop();
+        }
+      }
+        
     } 
   
     void pop(){ 
   
         // if no elements are there in q1  
-        if (q1.empty()) 
-            return ; 
-        q1.pop(); 
-        curr_size--; 
+        if(q1.empty()==false&&q2.empty()!=false)
+        {
+          q1.pop();
+        }
+      else if(q2.empty()==false&&q1.empty()!=false)
+      {
+        q2.pop();
+      }
+      else
+      {
+        cout<<"stack is empty"<<endl;
+      }
     } 
   
     int top() 
     { 
-        if (q1.empty()) 
-            return -1; 
-        return q1.front(); 
+        if(q1.empty()==false)
+          cout<<q1.top()<<endl;
+        else if(q2.empty()==false)
+          cout<<q2.top()<<endl;
+      
     } 
   
     int size() 
