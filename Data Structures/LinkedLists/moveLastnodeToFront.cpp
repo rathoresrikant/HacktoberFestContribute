@@ -69,7 +69,6 @@ int main()
     struct Node *start = NULL; 
   
   
-     1->2->3->4->5 */
     push(&start, 5); 
     push(&start, 4); 
     push(&start, 3); 
