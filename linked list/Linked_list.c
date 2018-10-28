@@ -270,7 +270,7 @@ void main()
         printf("\n");
         printf("==============================\n");
         printf("1.INSERT AT BEGINNING\n2.INSERT AT END\n3.INSERT IN BETWEEN\n4.DELETE AT BEGINNING\n5.DELETE AT END\n");
-        printf("6.DELETE IN BETWEEN\n7.SEARCH BY ROLL NUMBER\n8.SEARCH BY NAME\n9.SEARCH BY CGPA\n10.DISPLAY\n11.EXIT\n");
+        printf("6.DELETE IN BETWEEN\n7.SEARCH BY ROLL NUMBER\n8.SEARCH BY NAME\n9.SEARCH BY CGPA\n10.DISPLAY\n11.EXIT\n12.LEN");
         printf("==============================\n");
         printf("Choose any one of the above:\t");
         scanf("%d",&choice);
@@ -295,7 +295,10 @@ void main()
             case 3: insertInbetween();
                     break;
             case 6: deleteInbetween();
+               
                     break;
+            case 12: Printlen();
+                break;
             default: printf("Invalid choice\n");
                     break;
             case 11: exit(0);
