@@ -246,6 +246,17 @@ void display()
         }
     }
 }
+int getCount(struct Node* head) 
+{ 
+    int count = 0;  // Initialize count 
+    struct Node* current = head;  // Initialize current 
+    while (current != NULL) 
+    { 
+        count++; 
+        current = current->next; 
+    } 
+    return count; 
+} 
 //Main
 void main()
 {
