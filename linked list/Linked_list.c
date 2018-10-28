@@ -249,6 +249,7 @@ void display()
 //Main
 void main()
 {
+    printf("linked");
     int choice;
     while(1)
     {
