@@ -247,6 +247,18 @@ void display()
     }
 }
 //Main
+void Printlen()
+{
+    struct node *temp;
+    temp=start;
+    int le=0;
+    while(temp)
+    {
+        le++;
+        temp=temp->next;
+    }
+    printf("%d",le);
+}
 void main()
 {
     int choice;
