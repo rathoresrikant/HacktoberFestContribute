@@ -14,9 +14,10 @@
  * switchCase();
  *
  * @param {string} [string="1 reaLLy mIxed strIng!"] - String to be formatted
- * @param {string} [locale="en-US"] - locale to be used in String methods
- * @param {string} [localeLowerRange="a-z"] - RegEx string for your locale's lowercase characters (to go within square brackets)
- * @param {string} [localeUpperRange="A-Z"] - RegEx string for your locale's uppercase characters (to go within square brackets)
+ * @param {object} locale - Locale settings for RegEx search and String methods
+ * @param {string} [locale.locale="en-US"] - Locale to be used in String methods
+ * @param {string} [locale.localeLowerRange="a-z"] - RegEx string for your locale's lowercase characters (to go within square brackets)
+ * @param {string} [locale.localeUpperRange="A-Z"] - RegEx string for your locale's uppercase characters (to go within square brackets)
  * @returns {string} New, formatted string
  */
 function switchCase(
