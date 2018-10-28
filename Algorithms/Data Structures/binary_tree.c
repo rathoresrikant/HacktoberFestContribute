@@ -60,5 +60,8 @@ NULL NULL
 */
   
   getchar(); 
+    
+     root->left        = newNode(2); 
+  root->right       = newNode(3); 
   return 0; 
 }
