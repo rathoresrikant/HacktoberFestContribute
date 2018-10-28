@@ -44,10 +44,9 @@ public class reverseStack {
     reversedStack.push(element);
 
     // Calls recursive function on modified stack
-    // deleteMiddle(stack, initialSize, index + 1);
     reverse(stack, reversedStack, initialSize, index + 1);
 
-    // Put all items back except middle
+    // Put all items back
     stack.push(element);
   }
 }
