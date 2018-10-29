@@ -12,4 +12,4 @@ import ast
 l=input("Enter nested list (eg [x,[y,z]]): ")
 x=ast.literal_eval(l)
 no=nestSum(x)
-print("Sum of elements = "+str(no))
+print("Sum of elements="+str(no))
