@@ -17,26 +17,32 @@ struct btreeNode *createNode(int val, struct btreeNode *child)
 {
     struct btreeNode *newNode;
     newNode = (struct btreeNode *)malloc(sizeof(struct btreeNode));
-    newNode->val[1] = val;
-    newNode->count = 1;
-    newNode->link[0] = root;
-    newNode->link[1] = child;
+    if (newNode)
+    {
+        newNode->val[1] = val;
+        newNode->count = 1;
+        newNode->link[0] = root;
+        newNode->link[1] = child;
+    }
     return newNode;
 }
 
 /* Places the value in appropriate position */
 void addValToNode(int val, int pos, struct btreeNode *node, struct btreeNode *child)
 {
-    int j = node->count;
-    while (j > pos)
+    if (node)
     {
-        node->val[j + 1] = node->val[j];
-        node->link[j + 1] = node->link[j];
-        j--;
+        int j = node->count;
+        while (j > pos)
+        {
+            node->val[j + 1] = node->val[j];
+            nnode->link[j + 1] = node->link[j];
+            j--;
+        }
+        node->val[j + 1] = val;
+        node->link[j + 1] = child;
+       node->count++;
     }
-    node->val[j + 1] = val;
-    node->link[j + 1] = child;
-    node->count++;
 }
 
 /* split the node */
@@ -50,27 +56,30 @@ void splitNode(int val, int *pval, int pos, struct btreeNode *node,struct btreeN
         median = MIN;
 
     *newNode = (struct btreeNode *)malloc(sizeof(struct btreeNode));
-    j = median + 1;
-    while (j <= MAX)
+    if (node && newNode)
     {
-        (*newNode)->val[j - median] = node->val[j];
-        (*newNode)->link[j - median] = node->link[j];
-        j++;
-    }
-    node->count = median;
-    (*newNode)->count = MAX - median;
+        j = median + 1;
+        while (j <= MAX)
+        {
+            (*newNode)->val[j - median] = node->val[j];
+            (*newNode)->link[j - median] = node->link[j];
+            j++;
+        }
+        node->count = median;
+        (*newNode)->count = MAX - median;
 
-    if (pos <= MIN)
-    {
-        addValToNode(val, pos, node, child);
+        if (pos <= MIN)
+        {
+            addValToNode(val, pos, node, child);
+        }
+        else
+        {
+            addValToNode(val, pos - median, *newNode, child);
+        }
+        *pval = node->val[node->count];
+        (*newNode)->link[0] = node->link[node->count];
+        node->count--;
     }
-    else
-    {
-        addValToNode(val, pos - median, *newNode, child);
-    }
-    *pval = node->val[node->count];
-    (*newNode)->link[0] = node->link[node->count];
-    node->count--;
 }
 
 /* sets the value val in the node */
@@ -129,12 +138,17 @@ void insertion(int val)
 /* copy successor for the value to be deleted */
 void copySuccessor(struct btreeNode *myNode, int pos)
 {
-    struct btreeNode *dummy;
-    dummy = myNode->link[pos];
-
-    for (; dummy->link[0] != NULL;)
-        dummy = dummy->link[0];
-    myNode->val[pos] = dummy->val[1];
+    if (myNode && pos >= 0 && pos <= MAX)
+    {
+        struct btreeNode *dummy;
+        dummy = myNode->link[pos];
+        if (dummy)
+        {
+            for (; dummy->link[0] != NULL;)
+                dummy = dummy->link[0];
+            myNode->val[pos] = dummy->val[1];
+        }
+    }
 }
 
 /* removes the value from the given node and rearrange values */
@@ -153,118 +167,136 @@ void removeVal(struct btreeNode *myNode, int pos)
 /* shifts value from parent to right child */
 void doRightShift(struct btreeNode *myNode, int pos)
 {
-    struct btreeNode *x = myNode->link[pos];
-    int j = x->count;
-
-    while (j > 0)
+    if (myNode && pos > 0 && pos <= MAX)
     {
-        x->val[j + 1] = x->val[j];
-        x->link[j + 1] = x->link[j];
-    }
-    x->val[1] = myNode->val[pos];
-    x->link[1] = x->link[0];
-    x->count++;
+        struct btreeNode *x = myNode->link[pos];
+        if (x)
+        {
+            int j = x->count;
 
-    x = myNode->link[pos - 1];
-    myNode->val[pos] = x->val[x->count];
-    myNode->link[pos] = x->link[x->count];
-    x->count--;
-    return;
+            while (j > 0)
+            {
+                x->val[j + 1] = x->val[j];
+                x->link[j + 1] = x->link[j];
+            }
+            x->val[1] = myNode->val[pos];
+            x->link[1] = x->link[0];
+            x->count++;
+
+            x = myNode->link[pos - 1];
+            myNode->val[pos] = x->val[x->count];
+            myNode->link[pos] = x->link[x->count];
+            x->count--;
+        }
+    }
 }
 
 /* shifts value from parent to left child */
 void doLeftShift(struct btreeNode *myNode, int pos)
 {
-    int j = 1;
-    struct btreeNode *x = myNode->link[pos - 1];
-
-    x->count++;
-    x->val[x->count] = myNode->val[pos];
-    x->link[x->count] = myNode->link[pos]->link[0];
-
-    x = myNode->link[pos];
-    myNode->val[pos] = x->val[1];
-    x->link[0] = x->link[1];
-    x->count--;
-
-    while (j <= x->count)
+    if (myNode && pos > 0 && pos <= MAX)
     {
-        x->val[j] = x->val[j + 1];
-        x->link[j] = x->link[j + 1];
-        j++;
+        int j = 1;
+        struct btreeNode *x = myNode->link[pos - 1];
+        if (x)
+        {
+            x->count++;
+            x->val[x->count] = myNode->val[pos];
+            x->link[x->count] = myNode->link[pos]->link[0];
+
+            x = myNode->link[pos];
+            myNode->val[pos] = x->val[1];
+            x->link[0] = x->link[1];
+            x->count--;
+
+            while (j <= x->count)
+            {
+                x->val[j] = x->val[j + 1];
+                x->link[j] = x->link[j + 1];
+                j++;
+            }
+        }
     }
-    return;
 }
 
 /* merge nodes */
 void mergeNodes(struct btreeNode *myNode, int pos)
 {
-    int j = 1;
-    struct btreeNode *x1 = myNode->link[pos], *x2 = myNode->link[pos - 1];
-    //x1 : right child |||| x2 : left child.
-    x2->count++;
-    x2->val[x2->count] = myNode->val[pos];
-    // x2->link[x2->count] = myNode->link[0];
+    if (myNode && pos > 0 && pos <= MAX)
+    {
+        int j = 1;
+        struct btreeNode *x1 = myNode->link[pos], *x2 = myNode->link[pos - 1];
+        if (x1 && x2)
+        {
+            //x1 : right child |||| x2 : left child.
+            x2->count++;
+            x2->val[x2->count] = myNode->val[pos];
+            // x2->link[x2->count] = myNode->link[0];
 
-    while (j <= x1->count)
-    {   //taking data from right child if any data exist.
-        x2->count++;
-        x2->val[x2->count] = x1->val[j];
-        x2->link[x2->count] = x1->link[j];
-        j++;
-    }
+            while (j <= x1->count)
+            {   //taking data from right child if any data exist.
+                x2->count++;
+                x2->val[x2->count] = x1->val[j];
+                x2->link[x2->count] = x1->link[j];
+                j++;
+            }
 
-    j = pos;
-    while (j < myNode->count)
-    {   //Left shifting after sending parent_data to left child.
-        myNode->val[j] = myNode->val[j + 1];
-        myNode->link[j] = myNode->link[j + 1];
-        j++;
+            j = pos;
+            while (j < myNode->count)
+            {   //Left shifting after sending parent_data to left child.
+                myNode->val[j] = myNode->val[j + 1];
+                myNode->link[j] = myNode->link[j + 1];
+                j++;
+            }
+            myNode->count--;
+            free(x1);
+        }
     }
-    myNode->count--;
-    free(x1);
 }
 
 /* adjusts the given node */
 void adjustNode(struct btreeNode *myNode, int pos)
 {
-    if (!pos)
+    if (myNode)
     {
-        if (myNode->link[1]->count > MIN)
+        if (!pos)
         {
-            doLeftShift(myNode, 1);
-        }
-        else
-        {
-            mergeNodes(myNode, 1);
-        }
-    }
-    else
-    {
-        if (myNode->count != pos)
-        {
-            if (myNode->link[pos - 1]->count > MIN)
+            if (myNode->link[1]->count > MIN)
             {
-                doRightShift(myNode, pos);
+                doLeftShift(myNode, 1);
             }
             else
             {
-                if (myNode->link[pos + 1]->count > MIN)
+                mergeNodes(myNode, 1);
+            }
+        }
+        else
+        {
+            if (myNode->count != pos)
+            {
+                if (myNode->link[pos - 1]->count > MIN)
                 {
-                    doLeftShift(myNode, pos + 1);
+                    doRightShift(myNode, pos);
                 }
                 else
                 {
-                    mergeNodes(myNode, pos);
+                    if (myNode->link[pos + 1]->count > MIN)
+                    {
+                        doLeftShift(myNode, pos + 1);
+                    }
+                    else
+                    {
+                        mergeNodes(myNode, pos);
+                    }
                 }
             }
-        }
-        else
-        {
-            if (myNode->link[pos - 1]->count > MIN)
-                doRightShift(myNode, pos);
             else
-                mergeNodes(myNode, pos);
+            {
+                if (myNode->link[pos - 1]->count > MIN)
+                    doRightShift(myNode, pos);
+                else
+                    mergeNodes(myNode, pos);
+            }
         }
     }
 }
@@ -334,7 +366,7 @@ void deletion(int val, struct btreeNode *myNode)
     }
     else
     {
-        if (myNode->count == 0)
+        if (myNode && myNode->count == 0)
         {   //if count of root == 0 then adjust.
             tmp = myNode;
             myNode = myNode->link[0];
@@ -342,7 +374,6 @@ void deletion(int val, struct btreeNode *myNode)
         }
     }
     root = myNode;
-    return;
 }
 
 /* search val in B-Tree */
