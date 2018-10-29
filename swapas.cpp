@@ -2,11 +2,13 @@
 using namespace std;
 int main()
 {
-  int num1,num2;
+  int n1,n2;
   cout<<"Enter two numbers\n";
-  cin>>num1>>num2;
-  num1=num1+num2;
-  num2=num1-num2;
-  num1=num1-num2;
-  cout<<"num1= "<<num1<<"\nnum2= "<<num2<<"\n";
+  cin>>n1>>n2;
+  cout<<"number1= "<<n1<<"\nnumber2= "<<n2<<"\n";
+  n1=n1+n2;
+  n2=n1-n2;
+  n1=n1-n2;
+  cout<<"After swapping: \n";
+  cout<<"number1= "<<n1<<"\nnumber2= "<<n2<<"\n";
 }
