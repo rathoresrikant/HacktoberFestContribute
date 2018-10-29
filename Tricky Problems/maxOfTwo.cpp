@@ -34,6 +34,23 @@ void max(int a,int b){
 	cout<<res;
 }
 
+
+// C++ program for above implementation 
+#include <iostream> 
+using namespace std; 
+  
+// simplest Function to find the largest of 2 numbers 
+int LargestNum(int a, int b) 
+{ 
+    return a * (bool)(a / b) + b * (bool)(b / a); 
+}
+
+// simplest Function to find the min of 2 numbers 
+int SmallestNum(int a, int b)
+{
+	return a * (bool)(b / a) + b * (bool)(a / b);
+}
+
 int main(){
 	int a,b;
 	cin>>a>>b;
