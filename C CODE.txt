@@ -1,5 +1,5 @@
 
-// C++ program to reverse a string using stack 
+// C++ program to reverse the string
 #include<bits/stdc++.h> 
   
 using namespace std; 
