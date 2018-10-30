@@ -1,6 +1,6 @@
 /*
 a simple program that sees if the two given strings are the anagrams of each other
-How to use: 
+How to use:
 1. Type in the words
 2. Magic
 3. See the result :)
@@ -11,8 +11,7 @@ Created by Miautawn
 package com.Miautawn;
 
 import java.util.Scanner;
-
-public class Main {
+class Main {
 
     public static void main(String[] args) {
 
