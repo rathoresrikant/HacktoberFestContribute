@@ -36,7 +36,10 @@ class LinkedList:
         while(temporaryNode): 
             print(temporaryNode.data)
             temporaryNode = temporaryNode.next
-        
+ node = linked_list.head
+while node:
+    print node.value
+    node = node.next       
 LList = LinkedList() 
 LList.push(100) 
 LList.push(45) 
