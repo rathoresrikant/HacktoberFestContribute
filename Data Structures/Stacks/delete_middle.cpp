@@ -25,7 +25,13 @@ void deleteMid(stack<char> &st, int n,
    if (curr != n/2) 
      st.push(x); 
 } 
-  
+  void check(int depth) {
+    char c;
+    char *ptr = malloc(1);
+    printf("stack at %p, heap at %p\n", &c, ptr);
+    if (depth <= 0) return;
+    check(depth-1);
+}
 //Driver function to test above functions 
 int main() 
 { 
