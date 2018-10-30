@@ -123,7 +123,7 @@ void searchByRoll()
     struct node *temp;
     int roll;
     temp=start;
-    printf("Enter the roll number:\t");
+    printf("Enter the roll number1:\t");
     scanf("%d",&roll);
     printf("\n");
     while(temp!=NULL)
