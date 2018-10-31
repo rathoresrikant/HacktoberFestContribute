@@ -5,8 +5,8 @@ void swap(char *a,char *b)
 {
 	char temp;
 	temp=*a;
-	*a=*y;
-	*y=temp;
+	*a=*b;
+	*b=temp;
 }
 
 void permute(char *s,int l,int r)
