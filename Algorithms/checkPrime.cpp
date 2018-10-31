@@ -6,8 +6,8 @@
 *     Created 31/10/18
 */
 
-#include <iostream>
-#include <math.h>
+#include <iostream> // cin, cout
+#include <math.h> // sqrt
 
 int main(){
   unsigned long long n, sqrtn;
@@ -16,6 +16,10 @@ int main(){
 
   sqrtn = sqrt(n);
 
+  /* 
+    Only need to check to sqrt(n) because otherwise checking same
+    number pairs twice e.g. 2*5 == 5*2
+  */
   for(unsigned long long i = 2; i <= sqrtn; i++){
 
     if(n % i == 0){
@@ -27,5 +31,4 @@ int main(){
 
   std::cout << n << " is Prime!" << std::endl;
   return 1;
-
 }
