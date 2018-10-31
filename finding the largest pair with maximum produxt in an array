@@ -1,0 +1,13 @@
+def maxproduct(A,n):
+  if(n<2):
+    print("pair does not exist")
+  else:
+    a=A[0]
+    b=A[1]
+    for i in range(0,n):
+      for j in range(i+1,n):
+        if(A[i]*A[j]>a*b):
+          a=A[i]
+          b=A[j]
+         
+  print("the largest pair is ",a," and ",b)
