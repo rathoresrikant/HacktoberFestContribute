@@ -1,24 +1,28 @@
 // binary to decimal converter
-// limited to binary with 5 digits
-
+// generalize program
 #include <stdio.h>
+#include <math.h>
+int convertBinaryToDecimal(long long n);
 
 int main()
 {
-	int a, b, d1, d2, d3, d4, d5;
-	printf("Enter a 5 digit binary number: \n");
-	scanf_s("%d", &a);
-	d1 = a / 10000;
-	d2 = a / 1000;
-	d2 = d2 % 10;
-	d3 = a / 100;
-	d3 = d3 % 10;
-	d4 = a / 10;
-	d4 = d4 % 10;
-	d5 = a % 10;
+    long long t;
+    printf("Enter a binary number: ");
+    scanf("%lld", &t);
+    printf("%lld in binary = %d in decimal", t, convertBinaryToDecimal(t));
+    return 0;
+}
 
-	b = d1 * 16 + d2 * 8 + d3 * 4 + d4 * 2 + d5 * 1;
-
-	printf("%d in binary is %d in decimal\n", a, b);
-}	
+int convertBinaryToDecimal(long long t)
+{
+    int decimalNumber = 0, i = 0, r;
+    while (t!=0)
+    {
+        r = t%10;
+        t /= 10;
+        decimalNumber += r*pow(2,i);
+        ++i;
+    }
+    return decimalNumber;
+}
 
