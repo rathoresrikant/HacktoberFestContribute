@@ -1,12 +1,11 @@
 #include<stdio.h>
-main()
+int main()
 {
-    int n,i,s=1;
-    scanf("%d",&n);
-    for(i=1;i<=n;i++)
-    {
-        s=s*i;
-        
+    int num,answer=1;
+    scanf("%d",&num);
+    while(num>1){
+        answer*=num;
+        num--;
     }
-    printf("%d ",s);
+    printf("%d ",answer);
 }
