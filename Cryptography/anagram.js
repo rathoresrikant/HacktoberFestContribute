@@ -3,3 +3,4 @@ const anagram = (word1, word2) => (sortWord(word1) !== sortWord(word2)) ? false:
 let sortWord = text => text.split('').sort().join('');
 
 console.log(anagram('sfd!A$','$A!dfs'));
+console.log(anaagram('gdfg#G', 'Sdgijdbf'))
