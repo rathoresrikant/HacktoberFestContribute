@@ -1,126 +1,239 @@
-// Java program to get intersection point of two linked list
+package L10_June29;
 
-class LinkedList {
+public class LinkedList {
 
-    static Node head1, head2;
+	private class Node {
+		int data;
+		Node next;
+	}
 
-    static class Node {
+	private Node head;
+	private Node tail;
+	private int size;
 
-        int data;
-        Node next;
+	public int size() {
+		return this.size;
+	}
 
-        Node(int d) {
-            data = d;
-            next = null;
-        }
-    }
+	public int getFirst() throws Exception {
 
-    public int getElement(Node node, int n) {
-    	//Function that returns the nth element of the given linked list
-    	Node current = node;
-    	int count = 0;
-    	int size = getCount(node);
-    	//Check if the given position is valid
-    	if(n >= size || n < 0) {
-    		System.out.println("Invalid position");
-    		return -1;
-    	}
+		if (this.size == 0) {
+			throw new Exception("LL is Empty.");
+		}
 
-    	while(current != null && count < n) {
-    		count++;
-    		current = current.next;
-    	}
-    	return current.data;
-    }
+		return this.head.data;
 
-    public void printMiddle(Node list) {
-    	int size = getCount(list);
-    	 /*If the size of the list is even then print the two elements around the middle
-    	 otherwise just print a single element
-    	 if the list is empty don't do anything*/
-    	int middle = size/2;
-    	if(size % 2 == 0 && size > 0) {
-    		System.out.printf("%d %d\n", getElement(list, middle - 1), getElement(list, middle));
-    	}
-    	else if(size % 2 == 1) {
-    		System.out.printf("%d\n", getElement(list, middle));
-    	}
-    }
+	}
 
-    /*function to get the intersection point of two linked
-    lists head1 and head2 */
-    int getNode() {
-        int c1 = getCount(head1);
-        int c2 = getCount(head2);
-        int d;
+	public int getLast() throws Exception {
 
-        if (c1 > c2) {
-            d = c1 - c2;
-            return _getIntesectionNode(d, head1, head2);
-        } else {
-            d = c2 - c1;
-            return _getIntesectionNode(d, head2, head1);
-        }
-    }
+		if (this.size == 0) {
+			throw new Exception("LL is Empty.");
+		}
 
-    /* function to get the intersection point of two linked
-     lists head1 and head2 where head1 has d more nodes than
-     head2 */
-    int _getIntesectionNode(int d, Node node1, Node node2) {
-        int i;
-        Node current1 = node1;
-        Node current2 = node2;
-        for (i = 0; i < d; i++) {
-            if (current1 == null) {
-                return -1;
-            }
-            current1 = current1.next;
-        }
-        while (current1 != null && current2 != null) {
-            if (current1.data == current2.data) {
-                return current1.data;
-            }
-            current1 = current1.next;
-            current2 = current2.next;
-        }
+		return this.tail.data;
 
-        return -1;
-    }
+	}
 
-    /*Takes head pointer of the linked list and
-    returns the count of nodes in the list */
-    int getCount(Node node) {
-        Node current = node;
-        int count = 0;
+	public int getAt(int idx) throws Exception {
 
-        while (current != null) {
-            count++;
-            current = current.next;
-        }
-        return count;
-    }
+		if (this.size == 0) {
+			throw new Exception("LL is Empty.");
+		}
 
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+		if (idx < 0 || idx >= this.size) {
+			throw new Exception("Invalid Index.");
+		}
 
-        // creating first linked list
-        list.head1 = new Node(3);
-        list.head1.next = new Node(6);
-        list.head1.next.next = new Node(15);
-        list.head1.next.next.next = new Node(15);
-        list.head1.next.next.next.next = new Node(30);
+		Node temp = this.head;
 
-        // creating second linked list
-        list.head2 = new Node(10);
-        list.head2.next = new Node(15);
-        list.head2.next.next = new Node(30);
+		for (int i = 1; i <= idx; i++) {
+			temp = temp.next;
+		}
 
-        System.out.println("The node of intersection is " + list.getNode());
+		return temp.data;
 
-        System.out.println(list.getElement(list.head1, 4));
+	}
 
-        System.out.println("Printing middle");
-        list.printMiddle(list.head2);
-        System.out.println(list.head1.data);
-    }
+	private Node getNodeAt(int idx) throws Exception {
+
+		if (this.size == 0) {
+			throw new Exception("LL is Empty.");
+		}
+
+		if (idx < 0 || idx >= this.size) {
+			throw new Exception("Invalid Index.");
+		}
+
+		Node temp = this.head;
+
+		for (int i = 1; i <= idx; i++) {
+			temp = temp.next;
+		}
+
+		return temp;
+
+	}
+
+	public void addLast(int item) {
+
+		// create
+		Node nn = new Node();
+		nn.data = item;
+		nn.next = null;
+
+		// attach
+		if (this.size > 0)
+			this.tail.next = nn;
+
+		// dm update
+		if (this.size == 0) {
+			this.head = nn;
+			this.tail = nn;
+			this.size += 1;
+		} else {
+			this.tail = nn;
+			this.size += 1;
+		}
+
+	}
+
+	public void addFirst(int item) {
+
+		// create
+		Node nn = new Node();
+		nn.data = item;
+		nn.next = null;
+
+		// attach
+		nn.next = this.head;
+
+		// dm update
+		if (this.size == 0) {
+			this.head = nn;
+			this.tail = nn;
+			this.size++;
+		} else {
+			this.head = nn;
+			this.size++;
+		}
+
+	}
+
+	public void addAt(int item, int idx) throws Exception {
+
+		if (idx < 0 || idx > this.size) {
+			throw new Exception("Invalid Index.");
+		}
+
+		if (idx == 0) {
+			addFirst(item);
+		} else if (idx == this.size) {
+			addLast(item);
+		} else {
+
+			// create
+			Node nn = new Node();
+			nn.data = item;
+			nn.next = null;
+
+			// attach
+			Node nm1 = getNodeAt(idx - 1);
+			Node np1 = nm1.next;
+
+			nm1.next = nn;
+			nn.next = np1;
+
+			// dm
+			this.size++;
+		}
+
+	}
+
+	public int removeFirst() throws Exception {
+
+		if (this.size == 0) {
+			throw new Exception("LL is empty.");
+		}
+
+		Node temp = this.head;
+
+		if (this.size == 1) {
+			this.head = null;
+			this.tail = null;
+			this.size = 0;
+		} else {
+			this.head = this.head.next;
+			this.size--;
+		}
+		return temp.data;
+	}
+
+	public int removeLast() throws Exception {
+
+		if (this.size == 0) {
+			throw new Exception("LL is empty.");
+		}
+
+		Node temp = this.tail;
+
+		if (this.size == 1) {
+			this.head = null;
+			this.tail = null;
+			this.size = 0;
+		} else {
+			Node sm2 = getNodeAt(this.size - 2);
+			sm2.next = null;
+			this.tail = sm2;
+			this.size--;
+		}
+		return temp.data;
+	}
+
+	public int removeAt(int idx) throws Exception {
+
+		if (this.size == 0) {
+			throw new Exception("LL is empty.");
+		}
+
+		if (idx < 0 || idx >= this.size) {
+			throw new Exception("Invalid Index.");
+		}
+
+		if (idx == 0) {
+			return removeFirst();
+		} else if (idx == this.size - 1) {
+			return removeLast();
+
+		} else {
+
+			Node nm1 = getNodeAt(idx - 1);
+			Node n = nm1.next;
+			Node np1 = n.next;
+
+			nm1.next = np1;
+			this.size--;
+
+			return n.data;
+
+		}
+
+	}
+
+	public void display() {
+
+		System.out.println("----------------------");
+		Node temp = this.head;
+
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println(".");
+		System.out.println("----------------------");
+
+	}
+
+	
+
 }
