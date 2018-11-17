@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class CountOccurancesInSortedArray 
 { 
     static int countOccurrences(int arr[], int x) 
@@ -12,7 +13,9 @@ class CountOccurancesInSortedArray
     public static void main(String args[]) 
     { 
         int arr[] = {1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 6, 6, 7 ,8 ,8 }; 
-        int x = 3; 
+        System.out.print("Enter number to be checked : ");
+        Scanner sc= new Scanner(System.in);
+        int x= sc.nextInt();
         System.out.println(x + " occurs in the array " + countOccurrences(arr, x) + " times."); 
     } 
 } 
