@@ -1,28 +1,32 @@
 
 class stack():
 
-    def __init__(self,lst=[]):
-        self.list = lst
+    def __init__(self,string=""):
+        self.string = string
 
     def pop(self):
-        return self.list.pop()
+        self.string = self.string[:-1]
+
+    def top(self):
+        return self.string[-1]
 
     def push(self,x):
-        self.list.append(x)
+        self.string += x
     
     def height(self):
-        return len(self.list)
+        return len(self.string)
 
 string = input("Enter the string: ")
 
-stck = stack(list(string))
+stck = stack(string)
 
 outputstck = stack()
 
 while(stck.height()):
-    outputstck.push(stck.pop())
+    outputstck.push(stck.top())
+    stck.pop()
 
-outputString = ''.join(outputstck.list)
+outputString = outputstck.string
 
 print("Reversed String: "+outputString)
 
