@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hacktoberfest presented by DigitalOcean and DEV</title>
+    <meta charset="utf-8">
+    <meta name="title" content="Hacktoberfest presented by DigitalOcean and DEV">
+    <meta name="description" content="Open source is changing the world – one pull request at a time.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hacktoberfest">
+    <meta name="twitter:creator" content="@hacktoberfest">
+    <meta name="twitter:title" content="Hacktoberfest presented by DigitalOcean and DEV">
+    <meta name="twitter:image" content="https://hacktoberfest.digitalocean.com/assets/HF19_social-744d976f227e4aff6866443abcede8c651b309ec9c7c9f7410f5944f8e1299b9.png">
+    <meta name="twitter:url" content="https://hacktoberfest.digitalocean.com/">
+    <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Hacktoberfest presented by DigitalOcean and DEV">
+    <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+    <meta prefix="og: http://ogp.me/ns#" property="og:locale" content="en_US">
+    <meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="Hacktoberfest">
+    <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Open source is changing the world – one pull request at a time.">
+    <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://hacktoberfest.digitalocean.com/">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://hacktoberfest.digitalocean.com/assets/HF19_social-744d976f227e4aff6866443abcede8c651b309ec9c7c9f7410f5944f8e1299b9.png">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-2e022469fd44e4816b264a368d0457329a08b173aa768ce74d7e48f1036142e3.png" />
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="Ik5PyWUcbP2XyaoTg20c4qjIbDGqdBtcH2/Np39sRr9q4f+7Pzp4AXyjUBvxVH8f8cpD12qk08BnF5bewr8dQw==" />
+    
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <link rel="stylesheet" media="all" href="/assets/application-788ad7e7071c846c7d9660422778f46da84e9b52ee100b571be360831c574f45.css" data-turbolinks-track="reload" />
+    <link rel="stylesheet" href="https://assets.digitalocean.com/cookieConsent/cookieConsent.css">
+    <script src="/assets/application-92d04373bbdf06a1bb2e41c949a30c954c99f753aaacc372c28cc1bd50e19719.js"></script>
+    <script>
+  var airbrake = new airbrakeJs.Client({
+    projectId: "244344",
+    projectKey: "706287fc6c288d10169d2a8d38577941"
+  });
+
+  airbrake.addFilter(function(notice) {
+    notice.context.environment = "production";
+    return notice;
+  });
+</script>
+    <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+    analytics.load('on5tkWRozncTh5P5dyA1cVsyrkGgvpvU', (document.cookie.indexOf('cookieconsent_status=dismiss') > -1 ? {} : { integrations: { All: false, 'Segment.io': true}}));
+    analytics.page();
+    }}();
+</script>
+
+  </head>
+  <body>
+  <div class="top-bgs">
+    <header>
+  <nav class="navbar" id="navbar">
+    <a href="/"><img id="header-logo" src="/assets/logo-hf19-header-8245176fe235ab5d942c7580778a914110fa06a23c3d55bf40e2d061809d8785.svg" alt="Hacktoberfest Logo" width="475" ></a>
+    <ul class="navbar-end">
+      <li><a class="active navLink" href="/">home</a></li>
+      <li><a class=" navLink" href="/details">details</a></li>
+      <li class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+          <a class=" navLink" href="/events">Events</a>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a class="dropdown-item navLink" href="/events">view all events</a>
+            <hr class="dropdown-divider">
+            <a class="dropdown-item navLink" href="/eventkit">event kit</a>
+          </div>
+        </div>
+      </li>
+      <li><a class=" navLink" href="/faq">faqs</a></li>
+        <li><a class=" button button-small navLink" href="/profile">profile</a></li>
+    </ul>
+  </nav>
+</header>
+
+    <main class="home" id="main-home">
+<section class="section">
+  <div class="hero-body">
+    <h1 class="title is-1 is-spaced">Support open source and earn a <span class="highlight">limited edition T-shirt</span>!
+    </h1>
+    <a class="button" href="/profile">Start Hacking</a>
+  </div>
+  <div class="section2 space">
+    <div class="line-br">
+      <span class="line-br-1">-</span>
+      <span class="line-br-2">-</span>
+    </div>
+    <h2 class="title is-2 is-spaced"> Event details</h2>
+    <p class="p">
+      Hacktoberfest<span class="reg">&reg;</span> is open to everyone in our global community. Whether you’re a developer, student learning to code, event host, or company of any size, you can help drive growth of open source and make positive contributions to an ever-growing community. All backgrounds and skill levels are encouraged to complete the challenge.
+    </p>
+    <ul>
+      <li class="bullet">
+        <span class="p">Hacktoberfest is open to everyone in our global community!</span>
+      </li>
+      <li class="bullet">
+        <span class="p">Pull requests can be made in any GitHub-hosted repositories/projects.</span>
+      </li>
+      <li class="bullet">
+        <span class="p">Sign up anytime between October 1 and October 31.</span>
+      </li>
+    </ul>
+    <h2 class="title is-2 is-spaced">Rules</h2>
+    <p class="p">
+      To qualify for the official limited edition Hacktoberfest shirt, you must register and make four pull requests (PRs) between October 1-31 (in any time zone). PRs can be made to any public repo on GitHub, not only the ones with issues labeled Hacktoberfest. If a maintainer reports your pull request as spam or behavior not in line with the project’s code of conduct, you will be ineligible to participate. This year, the first 50,000 participants who successfully complete the challenge will earn a T-shirt.
+    </p>
+    <p>Read more about <a class="participation-link" href="/details">participation details</a>.</p>
+  </div>
+  <div class="section2">
+    <div class="line-br">
+      <span class="line-br-1">-</span>
+      <span class="line-br-2">-</span>
+    </div>
+    <a name="projects"></a>
+    <h2 class="title is-2 is-spaced">Hacktoberfest projects</h2>
+    <p class="p">
+      You can contribute to any project on GitHub. Here are a few looking for some help:
+    </p>
+    <div class="level language-filter">
+      <p id="projects-message" class="highlight">Displaying all Hacktoberfest projects</p>
+      <div class="right">
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select name="language[id]" id="language_id"><option value="">Select language</option>
+<option value="1">Pascal</option>
+<option value="2">Python</option>
+<option value="3">Rust</option>
+<option value="4">Java</option>
+<option value="5">TypeScript</option>
+<option value="6">Scala</option>
+<option value="7">CSS</option>
+<option value="8">Jupyter Notebook</option>
+<option value="9">PHP</option>
+<option value="10">C#</option>
+<option value="11">JavaScript</option>
+<option value="12">Kotlin</option>
+<option value="13">Go</option>
+<option value="14">Processing</option>
+<option value="15">Julia</option>
+<option value="16">Dart</option>
+<option value="17">PowerShell</option>
+<option value="18">HTML</option>
+<option value="19">Dockerfile</option>
+<option value="20">Swift</option>
+<option value="21">PLSQL</option>
+<option value="22">TeX</option>
+<option value="23">Ruby</option>
+<option value="24">Shell</option>
+<option value="25">Perl</option>
+<option value="26">F#</option>
+<option value="27">C</option>
+<option value="28">ColdFusion</option>
+<option value="29">Vue</option>
+<option value="30">C++</option>
+<option value="31">Haskell</option>
+<option value="32">Coq</option>
+<option value="33">Vim script</option>
+<option value="34">Lua</option>
+<option value="35">Clojure</option>
+<option value="36">MATLAB</option>
+<option value="37">CoffeeScript</option>
+<option value="38">R</option>
+<option value="39">Objective-C</option>
+<option value="40">Rich Text Format</option>
+<option value="41">TSQL</option>
+<option value="42">Brainfuck</option>
+<option value="43">QML</option></select>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="button button-small" id="reset-filter">Remove filter</button>
+      </div>
+    </div>
+    <div class="grid" id="project-list">
+       <a href="https://github.com/matomo-org/matomo/issues/13950">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> matomo </h3>
+      <span class="lang">PHP</span>
+    </div>
+    <p class="description">Liberating Web Analytics. Star us on Github? +1. Matomo is the leading open alternative to Google Analytics that gives you full control over your data. Matomo lets you easily co...</p>
+    <div class="details-wrap">
+      <span class="details-number">#13950</span>
+      <p class="details">Allow reenabling cookies</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/reactjs/react-rails/issues/1024">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> react-rails </h3>
+      <span class="lang">JavaScript</span>
+    </div>
+    <p class="description">Integrate React.js with Rails views and controllers, the asset pipeline, or webpacker.</p>
+    <div class="details-wrap">
+      <span class="details-number">#1024</span>
+      <p class="details">Permanent Turbolinks components without a specified cache ID will be loaded for all components without a cache ID</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/gohugoio/hugo/issues/3568">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> hugo </h3>
+      <span class="lang">Go</span>
+    </div>
+    <p class="description">The world’s fastest framework for building websites.</p>
+    <div class="details-wrap">
+      <span class="details-number">#3568</span>
+      <p class="details">Slash issue in themesDir and similar settings</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/lampepfl/dotty/issues/1589">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> dotty </h3>
+      <span class="lang">Scala</span>
+    </div>
+    <p class="description">Research compiler that will become Scala 3</p>
+    <div class="details-wrap">
+      <span class="details-number">#1589</span>
+      <p class="details">Missing error messages</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/PowerShell/PowerShell/issues/1559">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> PowerShell </h3>
+      <span class="lang">C#</span>
+    </div>
+    <p class="description">PowerShell for every system!</p>
+    <div class="details-wrap">
+      <span class="details-number">#1559</span>
+      <p class="details">CI check for files encoding</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/getsentry/sentry/issues/11907">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> sentry </h3>
+      <span class="lang">Python</span>
+    </div>
+    <p class="description">Sentry is cross-platform application monitoring, with a focus on error reporting.</p>
+    <div class="details-wrap">
+      <span class="details-number">#11907</span>
+      <p class="details">Prevent Referer leaking on password reset page</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/MycroftAI/mycroft-core/issues/2332">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> mycroft-core </h3>
+      <span class="lang">Python</span>
+    </div>
+    <p class="description">Mycroft Core, the Mycroft Artificial Intelligence platform. </p>
+    <div class="details-wrap">
+      <span class="details-number">#2332</span>
+      <p class="details">Add basic testcases for the audioservice interface</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/iluwatar/java-design-patterns/issues/834">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> java-design-patterns </h3>
+      <span class="lang">Java</span>
+    </div>
+    <p class="description">Design patterns implemented in Java</p>
+    <div class="details-wrap">
+      <span class="details-number">#834</span>
+      <p class="details">Maven build fail - Project &quot;image-microservice&quot; pom.xml lack of version field</p>
+    </div>
+  </div>
+  </a>
+ <a href="https://github.com/OpenDroneMap/ODM/issues/1028">
+  <div class="box projects grow-shadow">
+    <div class="title-wrap">
+      <h3 class="repo-name"> ODM </h3>
+      <span class="lang">Python</span>
+    </div>
+    <p class="description">A command line toolkit to generate maps, point clouds, 3D models and DEMs from drone, balloon or kite images.</p>
+    <div class="details-wrap">
+      <span class="details-number">#1028</span>
+      <p class="details">[Feature Request] Corner Point Coordinates for input images</p>
+    </div>
+  </div>
+  </a>
+
+    </div>
+    <a href="https://github.com/search?q=label%3Ahacktoberfest+state%3Aopen&type=Issues">
+      <button class="button" type="button" name="button">Browse more on GitHub</button>
+    </a>
+    <a name="climate"></a>
+    <h2 class="title is-2 is-spaced climate">Projects focused on climate change</h2>
+    <p class="p">
+      Because we believe open source technology has the potential to change the world, we wanted to showcase a few projects focused on combating climate change:
+    </p>
+    <div class="grid">
+       <a href="https://github.com/apache/climate">
+        <div class="box projects grow-shadow">
+          <div class="title-wrap">
+            <h3 class="repo-name"> climate </h3>
+            <span class="lang">Jupyter Notebook</span>
+          </div>
+          <p class="description">Mirror of Apache Open Climate Workbench</p>
+        </div>
+         </a>
+       <a href="https://github.com/Ecohackerfarm/contributor_covenant">
+        <div class="box projects grow-shadow">
+          <div class="title-wrap">
+            <h3 class="repo-name"> contributor_covenant </h3>
+            <span class="lang">CSS</span>
+          </div>
+          <p class="description">Pledge your respect and appreciation for contributors of all kinds to your open source project.</p>
+        </div>
+         </a>
+       <a href="https://github.com/tmrowco/tmrowapp-contrib">
+        <div class="box projects grow-shadow">
+          <div class="title-wrap">
+            <h3 class="repo-name"> tmrowapp-contrib </h3>
+            <span class="lang">JavaScript</span>
+          </div>
+          <p class="description">Tomorrow automatically calculates the climate impact of your daily choices by connecting to apps and services you already use.</p>
+        </div>
+         </a>
+    </div>
+    <a href="https://github.com/topics/climate-change">
+      <button class="button" type="button" name="button">Browse more on GitHub</button>
+    </a>
+  </div>
+</section>
+<section class="eventsBlock">
+  <div class="section events">
+    <div class="line-br">
+      <span class="line-br-1">-</span>
+      <span class="line-br-2">-</span>
+    </div>
+    <h2 class="title is-2 is-spaced">Global events</h2>
+    <p class="p">
+      Celebrate and support open source technology by
+      <a href="https://hacktoberfest.digitalocean.com/eventkit">organizing</a>
+      or attending a local event.
+    </p>
+    <!-- FEATURED EVENTS GENERATED HERE -->
+    <section class="eventUnion">
+      <a class="box grow-shadow" href="https://www.meetup.com/NightClazz-by-Zenika-Nantes/events/265341058/">
+          <span class="eventMonth">
+            October
+          </span>
+          <span class="eventDay">
+            15
+          </span>
+          <div>
+          <span class="eventTitle">
+            NightClazz Hacktoberfest
+          </span>
+          <span class="eventLocation">
+            Nantes, France
+          </span>
+          </div>
+      </a>
+      <a class="box grow-shadow" href="https://www.meetup.com/Ryanair-Labs-Dublin/events/265148734/">
+          <span class="eventMonth">
+            October
+          </span>
+          <span class="eventDay">
+            19
+          </span>
+          <div>
+          <span class="eventTitle">
+            Hacktoberfest Dublin 2019
+          </span>
+          <span class="eventLocation">
+            Dublin, Ireland
+          </span>
+          </div>
+      </a>
+      <a class="box grow-shadow" href="https://hacktoberfestldn.com">
+          <span class="eventMonth">
+            October
+          </span>
+          <span class="eventDay">
+            01
+          </span>
+          <div>
+          <span class="eventTitle">
+            Hacktoberfest LDN at Twilio
+          </span>
+          <span class="eventLocation">
+            London, United Kingdom
+          </span>
+          </div>
+      </a>
+      <a class="box grow-shadow" href="https://www.eventbrite.com/e/hacktoberfest-open-hack-night-in-seattle-tickets-73458651805">
+          <span class="eventMonth">
+            October
+          </span>
+          <span class="eventDay">
+            15
+          </span>
+          <div>
+          <span class="eventTitle">
+            Hacktoberfest Open Hack Night in Seattle
+          </span>
+          <span class="eventLocation">
+            Seattle, United States
+          </span>
+          </div>
+      </a>
+    </section>
+   <a class="button" href="/events">See more events</a>
+  </div>
+</section>
+<section class="section sponsors">
+  <div class="line-br">
+    <span class="line-br-1">-</span>
+    <span class="line-br-2">-</span>
+  </div>
+  <h2 class="title is-2 is-spaced">Words from our sponsors</h2>
+  <section class="tile is-ancestor">
+    <section class="tile is-child is-6">
+      <h4 class="title is-4 is-spaced">
+        <img alt="DO Logo" src="/assets/DO-logo-footer-46cf44569f2c43a8944a3cfe6de67c5f0b8df1535a216e84e1bcc6d01f17d0c6.svg" />
+      </h4>
+      <p>
+        We’re so excited to partner with
+        <a href="https://dev.to">DEV</a>
+        – an
+        <a href="https://github.com/thepracticaldev/dev.to">open source</a>
+        community platform built for developers of all backgrounds and experience levels – for this year’s Hacktoberfest. As a torch-bearer for open source, transparency, and inclusion in tech, DEV fully embodies the Hacktoberfest values. Check out the <a href="https://dev.to/t/hacktoberfest">#Hacktoberfest</a>
+        tag on DEV for announcements and resources before, during, and after the event.
+      </p>
+    </section>
+    <section class="tile is-child is-6">
+      <h4 class="title is-4 is-spaced">
+        <img alt="DEV Logo" class="dev-logo" src="/assets/DEV-logo-footer-ea477fc64b6fa2c8164f710a4b42b450d80cf53b7607322647c2ae7c2a04ada0.svg" />
+      </h4>
+      <p>
+        As participants long before we became sponsors, we’re thankful to our friends at
+        <a href="https://www.digitalocean.com/">DigitalOcean</a>
+        for creating Hacktoberfest. As an advocate of developers and startups, their cloud platform uniquely hits on both simplicity and scalability. And their
+        <a href="https://www.digitalocean.com/community">Community platform</a>
+        has become a global resource for education on development and DevOps topics, further illustrating that they, too, are stewards of
+        <a href="https://developers.digitalocean.com/opensource/">open source</a>.
+      </p>
+    </section>
+  </section>
+</section>
+</main>
+<script type="text/javascript">
+  setupHomeImageSwap();
+  setupLanguageFilter();
+</script>
+
+  </div>
+  <footer class="footer">
+    <div class="social level">
+      <div class="level-left">
+        <div class="line-br">
+          <span class="line-br-1">-</span>
+          <span class="line-br-2">-</span>
+        </div>
+        <h2 class="title is-2">Spread the word!</h2>
+        <div class="footer-social-links">
+          <a class="grow-shadow" href="https://www.facebook.com/sharer/sharer.php?u=https://hacktoberfest.digitalocean.com/">
+            <svg width="19" height="37" viewBox="0 0 19 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.41406 36.5H12.0234V20.3984H17.1562L18 14H12.0234V9.57031C12.0234 8.58594 12.1641 7.8125 12.5859 7.32031C13.0078 6.75781 13.9219 6.47656 15.1875 6.47656H18.5625V0.78125C17.2969 0.640625 15.6094 0.5 13.6406 0.5C11.1094 0.5 9.14062 1.27344 7.66406 2.75C6.11719 4.22656 5.41406 6.26562 5.41406 8.9375V14H0V20.3984H5.41406V36.5Z" fill="white"/>
+</svg>
+
+            <span>Facebook</span>
+          </a>
+          <a class="grow-shadow" href="https://ctt.ac/c5WeF">
+          <svg width="36" height="31" viewBox="0 0 36 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M32.2734 8.1875C33.6797 7.13281 34.9453 5.86719 36 4.32031C34.5938 4.95312 33.1875 5.375 31.7812 5.51562C33.3281 4.53125 34.4531 3.19531 35.0156 1.4375C33.5391 2.28125 31.9922 2.91406 30.3047 3.19531C29.6016 2.49219 28.7578 1.92969 27.8438 1.50781C26.9297 1.08594 25.9453 0.875 24.8906 0.875C23.5547 0.875 22.3594 1.22656 21.2344 1.85938C20.1094 2.5625 19.1953 3.47656 18.5625 4.60156C17.8594 5.72656 17.5781 6.99219 17.5781 8.25781C17.5781 8.82031 17.5781 9.38281 17.7188 9.94531C14.6953 9.80469 11.8828 9.10156 9.21094 7.69531C6.53906 6.35938 4.35938 4.53125 2.53125 2.21094C1.82812 3.40625 1.47656 4.67188 1.47656 5.9375C1.47656 7.20312 1.75781 8.39844 2.39062 9.45312C2.95312 10.5781 3.79688 11.4219 4.78125 12.125C3.58594 12.125 2.46094 11.7734 1.47656 11.1406V11.2812C1.47656 13.0391 2.03906 14.5859 3.16406 15.9219C4.28906 17.3281 5.69531 18.1719 7.38281 18.5234C6.67969 18.6641 6.04688 18.7344 5.41406 18.7344C4.99219 18.7344 4.5 18.7344 4.07812 18.6641C4.5 20.1406 5.34375 21.3359 6.60938 22.3203C7.875 23.3047 9.28125 23.7266 10.9688 23.7266C8.22656 25.8359 5.13281 26.8906 1.75781 26.8906C1.05469 26.8906 0.492188 26.8906 0 26.8203C3.375 29.0703 7.17188 30.125 11.3203 30.125C15.6094 30.125 19.4062 29.0703 22.7812 26.8203C25.8047 24.8516 28.1953 22.25 29.8828 18.875C31.5 15.7812 32.3438 12.4766 32.3438 9.10156C32.3438 8.67969 32.2734 8.39844 32.2734 8.1875Z" fill="white"/>
+</svg>
+
+            <span>Twitter</span>
+          </a>
+        </div>
+      </div>
+      <div class="level-right">
+          <img id="footer-logo" src="/assets/logo-hf19-full-10f3c000cea930c76acc1dedc516ea7118b95353220869a3051848e45ff1d656.svg" alt="Hacktoberfest Logo">
+      </div>
+    </div>
+    <div class="footer-end">
+      <div class="footer-logos">
+      <a href="https://www.digitalocean.com"><img src="/assets/do-footer-logo-30ab9883fb2ecbc97a13bcae3d86e7b4b673d299f56138773c57066ff54250af.svg" alt="DigitalOcean Logo" ></a>
+      <p> + </p>
+      <a href="https://www.dev.to"><img class="dev-logo" src="/assets/dev-footer-logo-ea477fc64b6fa2c8164f710a4b42b450d80cf53b7607322647c2ae7c2a04ada0.svg" alt="Dev Logo"></a>
+      </div>
+      <p>© 2019 DigitalOcean, LLC. All rights reserved.</p>
+    </div>
+</footer>
+
+  <!-- Header Logo Tilt -->
+  <script type="text/javascript">
+  	VanillaTilt.init(document.getElementById("header-logo"), {
+  		max: 5,
+  		speed: 300
+    });
+    // <!-- Footer Logo Tilt -->
+  	VanillaTilt.init(document.getElementById("footer-logo"), {
+  		max: 7,
+  		speed: 300
+  	});
+  </script>
+
+    <script type="text/javascript">
+      window.cookieDomain = ".digitalocean.com";
+    </script>
+
+  <script src="https://assets.digitalocean.com/cookieConsent/cookieConsent.js"></script>
+
+    <script>
+      window.addEventListener('cookieconsent_statuschange', function(e) {
+        if(e.detail.status === 'deny') { return; }
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-KHWBBT');
+      });
+    </script>
+
+  </body>
+</html>
