@@ -1,68 +1,46 @@
-#include <stdio.h> 
-#include <string.h> 
-void quickSort(char *arr, int si, int ei); 
-
-bool areAnagram(char *str1, char *str2) 
-{ 
-	int n1 = strlen(str1); 
-	int n2 = strlen(str2); 
-
-	if (n1 != n2) 
-	return false; 
-	quickSort(str1, 0, n1 - 1); 
-	quickSort(str2, 0, n2 - 1); 
-
-	for (int i = 0; i < n1; i++) 
-	if (str1[i] != str2[i]) 
-		return false; 
-
-	return true; 
-} 
-
-void exchange(char *a, char *b) 
-{ 
-	char temp; 
-	temp = *a; 
-	*a = *b; 
-	*b = temp; 
-} 
-
-int partition(char A[], int si, int ei) 
-{ 
-	char x = A[ei]; 
-	int i = (si - 1); 
-	int j; 
-
-	for (j = si; j <= ei - 1; j++) 
-	{ 
-		if(A[j] <= x) 
-		{ 
-			i++; 
-			exchange(&A[i], &A[j]); 
-		} 
-	} 
-	exchange (&A[i + 1], &A[ei]); 
-	return (i + 1); 
-} 
-
-void quickSort(char A[], int si, int ei) 
-{ 
-	int pi;	if(si < ei) 
-	{ 
-		pi = partition(A, si, ei); 
-		quickSort(A, si, pi - 1); 
-		quickSort(A, pi + 1, ei); 
-	} 
-} 
-int main() 
-{ 
-	char str1[] = "test"; 
-	char str2[] = "ttew"; 
-	if (areAnagram(str1, str2)) 
-	printf("The two strings are anagram of each other"); 
-	else
-	printf("The two strings are not anagram of each other"); 
-
-	return 0; 
-} 
-
+#include <cstdlib>
+using namespace std;
+#define neww we
+int main() {
+	int testc;
+	cin>>testc;
+	for(int i=0;i<testc;i++)
+	{
+	    string a,b;
+	    cin>>a>>b;
+	    if(a.length()!=b.length())
+	    {
+	        cout<<"NO"<<"\n";
+	    }
+	    else
+	    {
+	        int p=a.length();
+	        int cnt=a.length();
+	        int flag[p];
+	        for(int y=0;y<p;y++)
+	        {
+	            flag[y]=0;
+	        }	        
+	        for(int y=0;y<p;y++)
+	        {
+	            for(int k=0;k<p;k++)
+	            {
+	                if(flag[k]==0)
+	                {
+	                    if(a[y]==b[k])
+	                    {
+	                        flag[k]=1;
+	                        cnt--;
+	                        break;
+	                    }
+	                }
+	            }
+	        }
+	        if(cnt==0)
+	            cout<<"YES"<<"\n";
+	        else
+	            cout<<"NO"<<"\n";
+	    }
+	}
+	return 0;
+}

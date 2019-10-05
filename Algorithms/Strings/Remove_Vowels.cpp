@@ -1,23 +1,45 @@
-
-// A simple C++ code to remove all the vowels from given string and printing the remaining string after this operation.
-
 #include<bits/stdc++.h>
 using namespace std;
 
-int main()
+bool isVowel(char a)
 {
-    string S;
-    cin>>S;                                                             //input of String.
-    int l=S.size();
-    for(int i=0;i<l;i++)
-    {
-        char vow = tolower(S[i]);
-        
-        if(vow=='a' ||vow=='e' || vow=='i' || vow=='o' || vow=='u')
-        {
-            S.erase(S.begin()+i);                                        //erasing vowel if present.
-        }
-    }
-    cout<<S;                                                             //output of remaining String.    
-    return 0;
+	if(a=='A' || a=='a' || a=='E' || a=='e' || a=='I' || a=='i' || a=='O' || a=='o' || a=='U' || a=='u')
+		return true;
+	
+	return false;
+}
+
+int main() {
+	
+	string s;
+	cin>>s;
+	
+	string ans="";
+	string temp="";
+	for(int i=0;i<s.length();)
+	{
+		temp="";
+		
+		if(!isVowel(s[i]))
+		{
+			ans+=s[i];
+			i++;
+		}
+		else
+		{
+			while(isVowel(s[i]))
+			{
+				temp+=s[i];
+				i++;
+			}
+			
+			if(temp.size()==1)
+			{
+				ans+=temp;
+			}
+		}
+	}
+	
+	cout<<ans;
+	return 0;
 }

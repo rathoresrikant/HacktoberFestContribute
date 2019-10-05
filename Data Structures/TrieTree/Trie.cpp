@@ -1,73 +1,108 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
-const int max_char = 26; //maximum number of leafs (lowercase english alphabets only here).
-struct trie{
-    trie *child[max_char];
-    bool leaf;
-    // every trie node has a frequency array of every english letters.
-    trie(){
-        memset(child, 0, sizeof child);
-        leaf = 0;
+
+class TrieNode {
+	public :
+	char data;
+	TrieNode **children;
+	bool isTerminal;
+
+	TrieNode(char data) {
+		this -> data = data;
+		children = new TrieNode*[26];
+		for(int i = 0; i < 26; i++) {
+			children[i] = NULL;
+		}
+		isTerminal = false;
+	}
+};
+
+class Trie {
+    TrieNode *root;
+    
+    public :
+    
+    Trie() {
+        root = new TrieNode('\0');
     }
-    //inserting new word in trie.
-    void insert(char *str){
-    	//end of word.
-        if (*str == '\0'){
-            leaf = 1;
-        }else{
-        	//ASCII code of current character.
-            int cur = *str - 'a';
-  			//No word exist with current characters, creating new branch.
-            if (!child[cur])
-                child[cur] = new trie();
-            child[cur]->insert(str + 1);
-        }
-    }
-    //deleting a word in trie.
-    void deleteword(char *str){
-    	//end of word.
-        if (*str == '\0'){
-            leaf = 0;
+    
+    void insertWord(TrieNode *root, string word) {
+        // Base case
+        if(word.size() == 0) {
+            root -> isTerminal = true;
             return;
         }
-        else{
-        	//ASCII code of current character.
-            int cur = *str - 'a';
-            //checking next character in word.
-            child[cur]->wordquery(str + 1);
-            delete child[cur];
+        
+        // Small Calculation
+        int index = word[0] - 'a';
+        TrieNode *child;
+        if(root -> children[index] != NULL) {
+            child = root -> children[index];
         }
+        else {
+            child = new TrieNode(word[0]);
+            root -> children[index] = child;
+        }
+        
+        // Recursive call
+        insertWord(child, word.substr(1));
     }
-    //returns 1 if word exists in trie, 0 otherwise.
-    bool wordquery(char *str){
-    	//returns wether it exists or not by checking if current node is a leaf node (end of existing word).
-        if (*str == '\0')
-            return leaf;
-        else{
-        	//ASCII code of current character.
-            int cur = *str - 'a';
-            if (!child[cur])
-                return false;
-            //checking next character in word.
-            return child[cur]->wordquery(str + 1);
-        }
+    
+    // For user
+    void insertWord(string word) {	//it is basically overloading
+        insertWord(root, word);
+    }
+    
+  	bool search(TrieNode* root,string word) {
+    
+      if(word.size()==0)
+      {
+       	return root->isTerminal;
+      }
+  
+      int i= word[0]-'a';
+      if(root->children[i]!=NULL)
+        return search(root->children[i],word.substr(1));
+      else
+        return false;
+    }
+    
+    bool search(string word) {
+        
+      return search(root,word);
+        
     }
 };
-int main(){
-	//testing.
-    trie root;
-    root.insert("abc");
-    root.insert("and");
-    root.insert("abcdef");
-    cout << root.wordquery("abc") << '\n';
-    cout << root.wordquery("abcd") << '\n';
-    root.deleteword("abc");
-    cout << root.wordquery("abc");
-    /*
-		output should be:
-		1
-		0
-		0
-    /*
-    return  0;
+
+int main() {
+    int choice;
+    cin >> choice;
+    Trie t;
+    
+    //cout << "asasas";
+    while(choice != -1){
+        string word;
+        bool ans;
+        switch(choice) {
+            case 1 : // insert
+                // getline(cin, word);
+                cin >> word;
+                t.insertWord(word);
+                break;
+            case 2 : // search
+                // getline(cin, word);
+                cin >> word;
+                ans = t.search(word);
+                if (ans) {
+                    cout << "true" << endl;
+                } else {
+                    cout << "false" << endl;
+                }
+                break;
+            default :
+                return 0;
+        }
+        cin >> choice;
+    }
+    return 0;
 }
