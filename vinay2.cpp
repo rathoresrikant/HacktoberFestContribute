@@ -1,15 +1,13 @@
-#include<iostream.h>
-#include<conio.h>
-#include<string.h>
-#include<stdio.h>
-void main()
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main()
 {
-	clrscr();
 	char str[20];
 	int len, i, j;
 	cout<<"Enter a string : ";
-	gets(str);
-	len=strlen(str);
+	cin.getline(str,20);
+	len = strlen(str);
 	for(i=0; i<len; i++)
 	{
 		if(str[i]=='a' || str[i]=='e' || str[i]=='i' ||
@@ -25,5 +23,5 @@ void main()
 		}
 	}
 	cout<<"After deleting the vowels, the string will be : "<<str;
-	getch();
+    return 0;
 }
