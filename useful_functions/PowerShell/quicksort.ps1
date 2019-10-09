@@ -1,3 +1,4 @@
+# Quicksort ist a fast, recursive sort algorithm.  (https://en.wikipedia.org/wiki/Quicksort)
 # An array with INT or STRING or FLOAT can be passed to the function.
 function quicksort($array) {
     $less, $equal, $greater = @(), @(), @()
