@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>formjs</title>
+	<script type="text/javascript">
+		function validatedform(){
+			var x= document.forms["myform"]["gname"].value;
+			while(x==""){
+				alert("Name must be filled out");
+                return false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<form name="myform" action="/action_page.php" onsubmit="return validatedform" method="post">
+		<label>Name:</label><br>
+		<input type="text" name="gname" placeholder="name of user">
+		<input type="submit" name="submit">
+	</form>
+	
+</body>
+</html>
