@@ -20,4 +20,7 @@ def fibonacci(n):
        FibArray[n] = FibArray[n - 2] + FibArray[n - 1] 
     return FibArray[n] 
       
-print(fibonacci(9)) 
+#print(fibonacci(9))
+print("The following is a python program to print the n'th fibonacci term of the fibonacci series, Please enter the value of n:")
+n = int(input())
+print("The n'th fibonacci term is:\n %d " % fibonacci(n))
