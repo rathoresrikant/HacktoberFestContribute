@@ -36,7 +36,7 @@ private:
 
 };
 
-class Student : public Person
+class Student : public Person                 //Student class inherited from Person
 {
     
 public:
