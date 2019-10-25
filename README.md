@@ -1,5 +1,6 @@
-## Recording Gesture
-1. Run `python Gesture_Record.py`
-2. Enter Gesture Name
-3. In the Webcam window, Press 'c' to start capturing
-4. 5 sec of video will be recorded and saved to a folder in same directory
+# HacktoberFest2019
+## If you are new to GitHub and are looking for a public repository to contribute. This is a place to be !
+## Contribute to Open source and make the world a better place.
+## If you feel need of a folder, create one and commit. Feel free to give a pull request. If it is not a spam, it will be accepted and sometimes merged. :-)
+## You can create your own issues.
+## P.S. You will also win a cool T-shirt from GitHub if you do four successful PRs. Add working codes only with proper names. Hurry up and code !
