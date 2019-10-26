@@ -1,3 +1,10 @@
+/* Resources:
+
+1) Algorithm Visualization: https://visualgo.net/
+2) Selction Sort Wikipedia Page: https://en.wikipedia.org/wiki/Selection_sort
+
+*/
+
 #include <stdio.h>
  
 int main()
