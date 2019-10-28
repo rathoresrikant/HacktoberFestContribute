@@ -1,13 +1,17 @@
 class caseChanging {
+    static char change(char ch){
+        if Character.isUpperCase(ch){
+        return Character.toLowerCase(ch)   
+            }
+        else {
+        return Character.toUpperCase(ch)
+            }
+     }
     static String changeCase(String string) {
         String s = "";
         for (int i = 0, n = string.length(); i < n; i++) {
             char c = string.charAt(i);
-            if (c >= 'A' && c <= 'Z') {
-                c = Character.toLowerCase(c);
-            } else {
-                c = Character.toUpperCase(c);
-            }
+            c=change(c)
             s = s + c;
         }
         return s;
