@@ -1,3 +1,4 @@
+#Prints prime numbers.
 def prime(end ,start=0):
 	numbers=list(range(start,end+1))
 	result=list()
@@ -9,4 +10,5 @@ def prime(end ,start=0):
 				result.append(x)
 				break
 	return result
-print(prime(int(input("Enter end number: ")), int(input("Enter start number:"))))
+print(prime(int(input("Enter end number: ")), int(input("Enter start number:")))) #Prints result in List.
+# Code by S. U. Lokesh
