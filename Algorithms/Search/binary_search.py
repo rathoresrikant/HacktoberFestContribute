@@ -1,20 +1,29 @@
-def binary_search(A,x):
-    start = 0        # This variable represents the beginning index that will reference the search
-    end = len(A)-1   # This one represents the ending index
-    
-    while start <= end:
-        mdl = (start+end)//2  # This variable represents the index of the middle of the list
 
-        if A[mdl] < x :
-            start = mdl + 1
-        elif A[mdl] > x:
-            end = mdl - 1
-        else:
-            return mdl
-    return None
-
-x = 5110
-
-arr = [2, 14, 19, 21, 99, 210, 512, 1028, 4443, 5110]
-
-binary_search(arr,x)
+# Python Program for recursive binary search. 
+  
+# Returns index of x in arr if present, else -1 
+def binarySearch (arr, l, r, x): 
+  
+    # Check base case 
+    if r >= l: 
+  
+        mid = l + (r - l)/2
+  
+        # If element is present at the middle itself 
+        if arr[mid] == x: 
+            return mid 
+          
+        # If element is smaller than mid, then it  
+        # can only be present in left subarray 
+        elif arr[mid] > x: 
+            return binarySearch(arr, l, mid-1, x) 
+  
+        # Else the element can only be present  
+        # in right subarray 
+        else: 
+            return binarySearch(arr, mid + 1, r, x) 
+  
+    else: 
+        # Element is not present in the array 
+        return -1
+  
