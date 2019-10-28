@@ -6,4 +6,4 @@ def prime(r):
                 flag=1
         if(flag==0):
             print(a)
-prime(input("enter a range")
+prime(input("enter a range"))
