@@ -93,6 +93,20 @@ void interList(node1 *pointer, node1 *start3, node1 *start2){
     print(start3->next);
 }
 
+void reverse(node *start){
+    node1 *current = start;
+    node1 *prev = NULL;
+    node1 *next = NULL;
+    while(current!=NULL)
+    {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    start = prev;
+}
+
 int main(){
     int fin, choice, data;
     struct Node *start;
@@ -154,7 +168,8 @@ int main(){
             case 10: interList(start,start3,start2);
                      unionList(start,start3,start2);
                      break;
-            case 11: break;
+            case 11: reverse(start);
+                break;
         }
     }
     return 0;
