@@ -1,13 +1,14 @@
-'''Python program to find catalan number'''
-def fact(n):
-    if n <= 1:
-        return 1
-    else:
-        return (n*fact(n-1))
+def catalan(n): 
+    if n <=1 : 
+        return 1 
+    res = 0 
+    for i in range(n): 
+        res += catalan(i) * catalan(n-i-1) 
+  
+    return res 
 
 
-'''Taking input from user'''
-n=int(input('Enter a number'))
-catalan_num = (1//(n+1))*(fact(2*n)//fact(n)*fact(n))
+i=int(input('Enter a number'))
+catalan_num = catalan(i)
 
-print(catalan_num)
+print(i)
