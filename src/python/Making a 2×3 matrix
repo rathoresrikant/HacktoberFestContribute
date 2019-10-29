@@ -1,0 +1,9 @@
+import numpy as np
+a=input("Enter number: ")
+b=input("Enter number: ")
+c=input("Enter number: ")
+d=input("Enter number: ")
+e=input("Enter number: ")
+f=input("Enter number: ")
+Arr=np.array([[a,b,c],[d,e,f]])
+print(Arr)
