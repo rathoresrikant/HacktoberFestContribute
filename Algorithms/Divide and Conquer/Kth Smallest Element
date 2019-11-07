@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+//partition algo
+int partition(int arr[],int start,int end)
+{
+  int pvt = arr[end];   //pivot numbers --- taking last of array
+
+   int x = start-1;
+  for(int i = start; i < end; i++)
+  {
+     if(arr[i]<=pvt)
+       {
+         x++;
+         swap(arr[i],arr[x]);
+       }
+   }
+
+   swap(arr[x+1],arr[end]);
+   return x+1;
+}
+
+
+
+
+
+int quick(int arr[],int start,int end,int k)
+  {
+
+     if(start<=end)
+     {
+    int p = partition(arr,start,end);
+    if(p==k)            // if partition returns the kth position then that element will be our final answer
+    {
+       cout<<arr[p]<<endl;
+       return 0;
+    }
+    else if(p>k)            //else if partition returns the position greater than k then we need to search only left side of array
+    quick(arr,start,p-1,k);
+    else                     //if partition returns the position smaller than k then we need to search only right side of array
+    quick(arr,p+1,end,k);
+
+      }
+
+  }
+
+
+int main()
+{
+      int n;
+      cin>>n;
+      int arr[n];
+      for(int i = 0 ; i < n ; i++)
+       cin>>arr[i];
+     int k;
+     cin>>k;
+  quick(arr,0,n-1,k-1);
+
+}
