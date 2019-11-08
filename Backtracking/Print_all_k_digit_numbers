@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void gs2(char *str,int start,int end)
+{
+  if(start==end)
+  {
+     cout<<str<<endl;
+     return;
+  }
+
+
+  for(int i = 0 ; i <=9; i++)
+   {  if(start==0&&i==0)
+        continue;
+       str[start]='0'+i;
+       gs2(str,start+1,end);
+
+   }
+
+}
+
+
+
+int main()
+{
+
+  int k;
+  cin>>k;
+  char str[k+1];
+  str[k]='\0';
+  gs2(str,0,k);
+
+}
