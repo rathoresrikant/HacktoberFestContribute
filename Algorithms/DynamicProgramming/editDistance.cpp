@@ -44,25 +44,19 @@ int editDistance(string s1, string s2){
 }
 */
 int editDistance(string s1, string s2){
-  if(s1.size()==0||s2.size()==0)
+ if (s1.size() == 0) 
+      return s2.size();
+  	if (s2.size() == 0)
+      return s1.size();
+  	if(s1[0] == s2[0])
+    return editDistance(s1.substr(1) , s2.substr(1));
+  else
   {
-    if(s1.size()>s2.size())
-      return s1.size()-s2.size();
-    return s2.size()-s1.size();
+    int x = editDistance(s1 , s2.substr(1));
+    int y = editDistance(s1.substr(1) , s2);
+    int z = editDistance(s1.substr(1) , s2.substr(1));
+    return min(x+1,min(y+1,z+1));
   }
-  if(s1[0]==s2[0])
-    return editDistance(s1.substr(1),s2.substr(1));
-
-  //INSERT S1[0] IN S2[0]
-  int x=editDistance(s1.substr(1),s2);
-
-  //DELETE S2[0] FROM S2 
-  int y=editDistance(s1,s2.substr(1));
-
-  //REPLACE S2[0] FROM S1[0]
-  int z=editDistance(s1.substr(1),s2.substr(1));
-
-  return 1+min(x,min(y,z));
 }
 
 int editDistancememoisation(string s1, string s2, int**dp)
