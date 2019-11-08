@@ -20,4 +20,5 @@ def fibonacci(n):
        FibArray[n] = FibArray[n - 2] + FibArray[n - 1] 
     return FibArray[n] 
       
-print(fibonacci(9)) 
+num=int(input())
+print(fibonacci(num))
