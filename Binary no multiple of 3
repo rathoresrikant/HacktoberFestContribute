@@ -1,0 +1,63 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// checks if binary characters 
+// are multiple of 3 
+bool isMultiple3(char c[], int size) 
+{ 
+    // initial state is 0th 
+    char state = '0'; 
+  
+    for (int i = 0; i < size; i++) { 
+  
+        // storing binary digit 
+        char digit = c[i]; 
+  
+        switch (state) { 
+  
+        // when state is 0 
+        case '0': 
+            if (digit == '1') 
+                state = '1'; 
+            break; 
+  
+        // when state is 1 
+        case '1': 
+            if (digit == '0') 
+                state = '2'; 
+            else
+                state = '0'; 
+            break; 
+  
+        // when state is 2 
+        case '2': 
+            if (digit == '0') 
+                state = '1'; 
+            break; 
+        } 
+    } 
+  
+    // if final state is 0th state 
+    if (state == '0') 
+        return true; 
+    return false; 
+} 
+  
+// Driver's Code 
+int main() 
+{ 
+    // size of binary array 
+    int size = 5; 
+  
+    // array of binary numbers 
+    // Here it is 21 in decimal 
+    char c[] = { '1', '0', '1', '0', '1' }; 
+  
+    // if binary numbers are a multiple of 3 
+    if (isMultiple3(c, size)) 
+        cout << "YES\n"; 
+    else
+        cout << "NO\n"; 
+  
+    return 0; 
+} 
