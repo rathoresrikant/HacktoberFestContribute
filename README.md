@@ -1,4 +1,5 @@
-# HacktoberFest2019
+# Hacktober Fest 2020
+## Hacktober fest is organised by Digital Ocean in collaboration with GitHub.
 ## If you are new to GitHub and are looking for a public repository to contribute. This is a place to be !
 ## Contribute to Open source and make the world a better place.
 ## If you feel need of a folder, create one and commit. Feel free to give a pull request. If it is not a spam, it will be accepted and sometimes merged. :-)
