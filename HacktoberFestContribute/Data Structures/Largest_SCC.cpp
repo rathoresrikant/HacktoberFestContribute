@@ -16,7 +16,8 @@ void addedge(vector<int> adj[],int u,int v){
     // adj[v-1].push_back(u);
 }
 
-void DFS_visit(vector<int> adj[], struct node arr[], int u, vector<int>& mystack,int toggle,int* count){
+void DFS_visit(vector<int> adj[], struct node arr[], int u, vector<int>& mystack,int toggle,int* count)
+{
     if(!toggle)*count = *count +1;
     tim = tim + 1;
     arr[u].d = tim;
@@ -34,7 +35,8 @@ void DFS_visit(vector<int> adj[], struct node arr[], int u, vector<int>& mystack
     
 }
 
-int main() {
+int main()
+{
     ios_base::sync_with_stdio(false); 
     cin.tie(NULL);    
 	int V,E,u,v, cc=0,count, maxcount = -1,t;
@@ -65,7 +67,8 @@ int main() {
         }
         tim = 0;
         //popping elements of stack and checking for maximum length of SCC 
-        while(mystack.size() != 0){
+        while(mystack.size() != 0)
+	{
             u = mystack.back();
             if(arr_t[u].color == 0){
                 count = 0;
@@ -77,7 +80,7 @@ int main() {
         }
         
         //printing maxcount
-        cout<<maxcount<<endl;
+        cout<<"max count is:"maxcount<<endl;
 
 	}
 	return 0;
