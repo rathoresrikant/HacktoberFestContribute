@@ -1,0 +1,51 @@
+// { Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+
+
+class Solution
+{
+public:
+    vector<long long> printSeries(int N)
+    {
+        // Write your code here
+        vector<long long > vec;
+        if(N==1){vec.push_back(1);return vec;}
+        if(N==2){vec.push_back(1);vec.push_back(2);return vec;}
+        if(N==3){vec.push_back(1);vec.push_back(2);vec.push_back(5);return vec;}
+        else{
+            vec.push_back(1);vec.push_back(2);vec.push_back(5);
+        }
+        long long int fab[N+1]={0};
+        fab[0]=1;fab[1]=2;fab[2]=5;
+        for(long long int i=3;i<=N;i++){
+            fab[i] = fab[i-1] + fab[i-2] + fab[i-3];
+            vec.push_back(fab[i]);
+        }
+        return vec;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int N;
+        cin >> N;
+        
+        Solution ob;
+        vector<long long> a = ob.printSeries(N);
+        
+        for(long long i=0;i<N;i++){
+            cout<<a[i]<<" ";
+        }
+        cout<<endl;
+        
+    }
+    return 0;
+}  // } Driver Code Ends
