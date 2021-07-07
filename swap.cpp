@@ -3,11 +3,11 @@ using namespace std;
 
 int main()
 {
-	int a, b;
-	cout<<"Enter two numbers : ";
-	cin>>a>>b;
-	a = a + b;
-	b = a - b;
-	a = a - b;
-	cout<<"Now the first number is "<<a<<" and second number is "<<b<<" .\n";
+	int X, Y;
+	cout<<" PLEASE ENTER TWO NUMBERS : ";
+	cin>>X>>Y;
+	X = X + Y;
+	Y = X - Y;
+	X = X - Y;
+	cout<<"Now the first number is "<<X<<" and second number is "<<Y<<" .\n";
 }
