@@ -1,0 +1,15 @@
+int c=0;
+void fun(Node *root){
+    if(!root)return;
+    fun(root->left);
+    c++;
+    fun(root->right);
+}
+int getSize(Node* root)
+{
+   // Your code here
+   fun(root);
+   int y=c;
+   c=0;
+   return y;
+}
