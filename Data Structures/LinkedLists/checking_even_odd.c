@@ -2,62 +2,82 @@
 #include<stdlib.h> 
 
 // Defining structure 
-struct Node 
+typedef struct node 
 { 
 	int data; 
-	struct Node* next; 
-}; 
+	struct node* next; 
+}Node; 
+
+// doing this adds object orientedness in program 
+typedef struct linklist
+{
+	Node* head;
+}list;
 
 // Function to check the length of linklist 
-int LinkedListLength(struct Node* head) 
+int LinkedListLength(list* sll) 
 { 
-	while (head && head->next) 
-	{ 
-		head = head->next->next; 
-	} 
-	if (!head) 
-		return 0; 
-	return 1; 
+	int count=0;
+	Node* p = sll->head;
+	while (p!=NULL)
+	{
+		count++;
+		p=p->next;
+	}
+	return count;
 } 
-	
-// Push function 
-void push(struct Node** head, int info) 
-{ 
-	// Allocating node 
-	struct Node* node = (struct Node*) malloc(sizeof(struct Node)); 
-	
-	// Info into node 
-	node->data = info; 
-	
-	// Next of new node to head 
-	node->next = (*head); 
 
-	// head points to new node 
-	(*head) = node; 
+//initializing the head of list to NULL 
+list* list_init()
+{
+	list *sll = (list*)malloc(sizeof(list));
+	sll->head=NULL;
+	return sll;
+}
+
+// creating the node for linked list
+Node* create_node(int data)
+{
+	Node* temp=(Node*)malloc(sizeof(Node));
+	temp->data=data;
+	temp->next=NULL;
+	return temp;
+}
+// Push function or adding the new node in the beginning of the linked list 
+void push(list* sll, int info) 
+{ 
+	Node* temp=create_node(info);
+	temp->next=sll->head;
+	sll->head=temp;
 } 
 
 // Driver function 
-int main(void) 
+int main() 
 { 
-	struct Node* head = NULL; 
+	list* sll = list_init(); 
 	
 	// Adding elements to Linked List 
-	push(&head, 4); 
-	push(&head, 5); 
-	push(&head, 7); 
-	push(&head, 2); 
-	push(&head, 9); 
-	push(&head, 6); 
-	push(&head, 1); 
-	push(&head, 2); 
-	push(&head, 0); 
-	push(&head, 5); 
-	push(&head, 5); 
-	int check = LinkedListLength(head); 
+	push(sll, 4); 
+	push(sll, 5); 
+	push(sll, 5); 
+	push(sll, 5); 
+	push(sll, 7); 
+	push(sll, 2); 
+	push(sll, 9); 
+	push(sll, 6); 
+	push(sll, 1); 
+	push(sll, 2); 
+	push(sll, 0); 
+	push(sll, 5); 
+	push(sll, 5); 
+	push(sll, 6);
+	push(sll, 8);
+	push(sll, 9);
+	int check = LinkedListLength(sll); 
 	
 	// Checking for length of 
 	// linklist 
-	if(check == 0) 
+	if((check%2) == 0) 
 	{ 
 		printf("Even\n"); 
 	} 
