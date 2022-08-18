@@ -1,33 +1,110 @@
-node *intersection(node *Ahead,node *Bhead)
-{
-	node *ptr1=Ahead;
-	node *ptr2=Bhead;
-	int ptr1count=0,ptr2count=0;
-	while((ptr1->next!=NULL)&&(ptr2->next!=NULL))
-	{
-		ptr1=ptr->next;
-		ptr1count++
-		ptr2=ptr2->next;
-		ptr2count++;
-	}
-	int differenceinlength=abs(ptr1count-ptr2count);
-	if(ptr1count>pr2count)
-	{
-		for(int i=0;i<differenceinlength;i++)
-			ptr2=ptr2->next;
-	}
-	else
-	{
-		for(int i=0;i<differenceinlength;i++)
-			ptr2=ptr2->next;
-	}
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
 
-	while(ptr1!=ptr2)
-	{
-		ptr1=ptr1->next;
-		ptr2=ptr2->next;
+struct node{
+	int data;
+	struct node *link;
+};
+struct node *root = NULL;
+
+void display();
+void insert(int data,int position);
+void create(int n);
+
+int main(){
+	int n,data,position;
+	cout<<"Enter the length of the list-";
+	cin>>n;
+	create(n);
+	cout<<"Enter the node to be inserted-";
+	cin>data;
+	cout<<"Enter the position-";
+	cin>>position;
+	insert(data,position);
+	cout<<"The final list becomes-\n";
+	display();
+	return(0);
+}
+
+void create(int n){
+	struct node *temp, *newNode;
+	int data,i;
+	
+	root = (struct node*)malloc(sizeof(struct node));
+	if(root==NULL){
+		cout<<"Unable to allocate memory";
 	}
-	return ptr1;
+	else{
+		cout<<"Enter data in node 1 -";
+		cin>>data;
+		root->data = data;
+		root->link = NULL;
+		
+		temp = root;
+		
+		for(i=2;i<=n;i++){
+			newNode = (struct node*)malloc(sizeof(struct node));
+			
+			if(newNode==NULL){
+			cout<<"Unable to allocate memory";
+			break;}
+			
+			else{
+				cout<<"Enter the data in node -"<<i;
+				cin>>data;
+				
+				newNode->data = data;
+				newNode->link = NULL;
+				
+				temp->link = newNode;
+				temp = temp->link;
+			}
+		}
+		cout<<"List created successfully\n";
+	}
+}
 
+void insert(int data, int position){
+	int i;
+	struct node *temp,*newNode;
+	
+	newNode = (struct node*)malloc(sizeof(struct node));
+	
+	if(newNode==NULL)
+	cout<<"Unable to allocate";
+	
+	else{
+		newNode->data = data;
+		newNode->link = NULL;
+		
+		temp = root;
+		
+		for(i=2;i<position;i++){
+			temp = temp->link;
+			if(temp == NULL)
+			break;
+		}
+		if(temp!=NULL){
+			newNode->link = temp->link;
+			temp->link = newNode;
+			cout<<"Data inserted successfully\n";
+		}
+		else{
+			cout<<"Unable to insert";
+		}
+	}
+}
 
+void display(){
+	struct node *temp;
+	if(root==NULL)
+	cout<<"list empty";
+	else{
+		temp =root;
+		while(temp!=NULL){
+			cout<<"Data = "<<temp->data;
+			temp = temp->link;
+		}
+	}
 }
