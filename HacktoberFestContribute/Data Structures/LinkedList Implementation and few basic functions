@@ -1,0 +1,131 @@
+#include <iostream>
+using namespace std;
+// defining node 
+class Node{
+public:
+int data;
+Node* next;
+// constructor for creating a node;
+Node(int data){
+  this->data = data;
+  this->next = NULL;
+}
+~Node()
+{
+  int value = this->data;
+if(this->next!=NULL)
+{
+  delete next;
+  this->next = NULL;
+}
+}
+};
+void insertAtHead(Node* &head, int d)
+{
+  // creating the new node 
+  Node* temp = new Node(d);
+  temp->next = head;
+  head = temp;
+
+  
+}
+void printList(Node* &head)
+{
+  Node* temp = head;
+  while(temp!=NULL)
+    {
+      cout<<temp->data<<" ";
+      temp = temp->next;
+    }
+  cout<<endl;
+}
+
+void insertAtTail(Node* &tail, int d)
+{ // create a node which has to be placed in the list
+  Node* temp = new Node(d);
+  // tail is also the starting node in the list 
+  // the "next" of the tail will point to the node which has to be inserted in the list
+  tail->next = temp;
+  // then the tail will be moved to next element in case of other elements are added
+  tail = tail->next;
+
+  
+}
+void InsertAtMid(Node* &head, int position, int d){
+  // position se ek pehli node tk jana he 
+  // aur node to insert ka jo next wala address hoga ,wo position se aaage wali node ko point krega
+
+  // agr pehli postion he toh nih ho paega insert, udhr pe insert at head call kr dena
+  if(position==1)
+  {
+    insertAtHead(head, d);
+    return;
+  }
+
+  
+  Node* temp = head;
+  int count = 1;
+  while(count<position-1) // to traverse till the node just before the desired position
+    {
+      temp = temp->next;
+      count++;
+    }
+  // creating the node which has to be inserted 
+  Node* NodeToIn = new Node(d);
+  
+   NodeToIn->next = temp->next;
+  temp->next = NodeToIn;
+  
+}
+
+void deleteNode(int position , Node* &head)
+{
+  if(position == 1)
+  {
+    Node* temp = head;
+    head = head->next;
+    // delete the freed node
+    temp->next = NULL;
+    delete temp;
+    
+  }
+  else {
+    Node* curr = head;
+    Node* prev = NULL;
+    int cnt = 1;
+    while(cnt<position )
+      {
+        prev = curr;
+        curr= curr->next;
+        cnt++;
+      }
+    prev->next = curr->next;
+    curr->next = NULL;
+    delete curr;
+  }
+}
+int main() {
+
+  // creating new nodee
+  Node* node1 = new Node(24);
+  Node* head = node1;
+  Node* tail = node1;
+
+   insertAtHead(head, 14);
+     insertAtHead(head, 15);
+   insertAtHead(head, 176);
+   insertAtHead(head, 16);
+   insertAtHead(head, 17);
+   insertAtHead(head, 187);
+   insertAtHead(head, 190);
+  deleteNode(3, head);
+    deleteNode(1, head);
+
+
+
+
+
+  
+  printList(head);
+}
+
