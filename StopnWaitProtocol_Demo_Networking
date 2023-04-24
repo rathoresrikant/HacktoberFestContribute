@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdlib.h>
+#include <ctime>
+
+using namespace std;
+
+class timer
+{
+public:
+    int tim()
+    {
+        time_t t1,t2;
+        t1=time(NULL);
+        t2=t1;
+        cout<<"Sending -->\t\t\t";
+        system("ping 127.0.0.1 -n 3 >nul");
+            t2=time(NULL);
+            if (t2-t1>2)
+            {
+                cout<<"Timeout.Ack not received\n\nResending -->"<<endl;
+                return 0;
+            }
+            else
+            {
+                cout<<"Received\n"<<endl;
+            }
+    }
+};
+
+int main()
+{
+    int n,send;
+    timer t;
+    cout<<"Enter the number of frames -->";
+    cin>>n;
+    for (int i=1;i<=n;i++)
+    {
+        cout<<"Frame "<<i<<endl;
+        send=t.tim();
+        if (send==0)
+        {
+            i--;
+        }
+    }
+    return 0;
+}
