@@ -11,11 +11,11 @@ This library demonstrating a  simple calcultaor.
 2. Subtraction.
 3. Multiplication.
 4. Division.
-5. Modulus
+5. Modulus.
 
 ### How to Run?
 
-Download all file ,  copy to a folder,  open terminal from the folder and do the following
+Download all file, copy to a folder, open terminal from the folder and do the following
 <br> 
 - compile calulator.cpp,
 	<br> ```g++ calculator.cpp -c```
@@ -27,7 +27,7 @@ Download all file ,  copy to a folder,  open terminal from the folder and do the
     <br> ```./simpleCalculator```
 
 <br>
-**OR**  simply Download all file,  copy to a folder,  open terminal from the folder and run the code given below
+**OR**  simply Download all the files, copy to a folder, open terminal from the folder and run the code given below
 
 - ```make```
 
