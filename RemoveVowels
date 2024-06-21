@@ -1,0 +1,28 @@
+#include <bits/stdc++.h> 
+#include<iostream>
+using namespace std; 
+
+bool check_vow(char c) 
+{ 
+    
+    return (c == 'a') || (c == 'e') ||  (c == 'i') || (c == 'o') ||  (c == 'u'); 
+} 
+  
+void remVowels(string str) 
+{ 
+   
+    printf("%c", str[0]); 
+  
+    for (int i = 1; str[i]; i++) 
+  
+        if ((!check_vow(str[i - 1])) ||  (!check_vow(str[i]))) 
+            printf("%c", str[i]); 
+} 
+  
+int main() 
+{ 
+    string s;
+    cin>>s;
+    remVowels(s); 
+} 
+  
