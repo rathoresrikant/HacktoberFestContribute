@@ -1,0 +1,10 @@
+import math
+def Area(s):
+    area=(3*3**0.5/2)*(s)**2
+    return area
+
+s=int(input("Enter length of side: ")
+area=Area(s)
+print("Area of hexagon is".format(area),end=" ")
+result=Area(s)
+print(result)
