@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+    long cardno;
+    do
+    {
+        cardno = get_long("Number: ");   //prompts user for credit card number
+    }
+    while (cardno < 0);                  //card number should be positive
+
+    int n1, n2;
+    int sum1 = 0;
+    int sum2 = 0;
+
+    long test1 = cardno;
+    long test2 = cardno;
+
+    while (test1 > 0)             //evaluating checksum sequence- LUHN'S ALGORITHM
+    {
+        n1 = test1 % 10;
+        sum1 += n1;
+        test1 -= n1;
+        test1 /= 10;
+
+        n2 = test1 % 10;
+
+        if ((n2 * 2) > 9)        //if double of the number is two digits
+        {
+            int n2_t2 = n2 * 2;
+            sum2 += n2_t2 % 10;
+            sum2 += n2_t2 / 10;
+        }
+        else
+        {
+            sum2 += (n2 * 2);
+        }
+        test1 -= n2;
+        test1 /= 10;
+    }
+
+    if ((sum1 + sum2) % 10 == 0)   //if checksum number ends with 0
+    {
+        bool amex, mastercard, visa;    //boolean true value
+
+        amex =
+            (test2 >= 340000000000000 && test2 < 350000000000000) || (test2 >= 370000000000000 && test2 < 380000000000000);
+
+        mastercard =
+            (test2 >= 5100000000000000 && test2 < 5600000000000000);
+
+        visa =
+            (test2 >= 4000000000000 && test2 < 5000000000000) || (test2 >= 4000000000000000 && test2 < 5000000000000000);
+
+        if (amex)
+
+        {
+            printf("AMEX\n");
+        }
+
+        else if (mastercard)
+
+        {
+            printf("MASTERCARD\n");
+        }
+
+        else if (visa)
+
+        {
+            printf("VISA\n");
+        }
+
+        else
+
+        {
+            printf("INVALID\n");  //if it is neither amex nor mastercard nor visa
+        }
+
+    }
+
+    else                              //else if checksum is false
+    {
+        printf("INVALID\n");
+    }
+
+}
