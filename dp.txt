@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+map< int,long long > ab;
+long long calc(long long int n){
+if(n<12) return n;
+if(ab.count(n)) return ab[n];
+ab[n]=calc(n/2)+calc(n/3)+calc(n/4);
+return ab[n];
+
+}
+int main(){
+    long long int x;
+    while(scanf("%lld",&x)!=EOF){
+        cout<<calc(x)<<endl;
+    }
+
+
+return 0;}
