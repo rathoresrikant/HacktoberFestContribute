@@ -14,7 +14,8 @@ int main()
 	{
 		cin>>arr[i];
 	}
-	//not sorting as it will take nlog(n) instead of n incase of searching without sorting
+	// Not sorting as it will take nlog(n) instead of n incase of searching without sorting
+	// If array is Sorted use Binary Search Instead
 	cout<<endl<<"Enter the number to search: ";
 	cin>>x;
 	for(i=0;i<n;i++)
