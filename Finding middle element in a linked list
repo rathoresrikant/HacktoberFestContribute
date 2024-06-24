@@ -1,0 +1,12 @@
+int getMiddle(Node *head)
+{
+   // Your code here
+    vector<int> m;int c=0;
+    while(head!=NULL){
+        m.push_back(head->data);
+        head =head->next;
+        c++;
+    }
+    float d=c;
+    return m[floor(d/2)];
+}
