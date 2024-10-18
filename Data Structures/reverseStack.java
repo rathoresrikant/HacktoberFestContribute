@@ -1,52 +1,33 @@
+import java.util.Stack;
 
-import java.io.*;
-import java.util.*;
+public class ReverseStringUsingStack {
+    public static String reverseString(String str) {
+        Stack<Character> stack = new Stack<>();
 
-public class reverseStack {
+        // Push each character onto the stack
+        for (char c : str.toCharArray()) {
+            stack.push(c);
+        }
 
-  public static void main(String args[]) {
-    Stack<String> stack = new Stack<String>();
-    Stack<String> reversedStack = new Stack<String>();
+        StringBuilder reversedString = new StringBuilder();
 
-    stack.push("11");
-    stack.push("10");
-    stack.push("9");
-    stack.push("8");
-    stack.push("7");
-    stack.push("6");
-    stack.push("5");
-    stack.push("4");
-    stack.push("3");
-    stack.push("2");
-    stack.push("1");
+        // Pop each character from the stack to reverse the string
+        while (!stack.isEmpty()) {
+            reversedString.append(stack.pop());
+        }
 
-    reverse(stack, reversedStack, stack.size(), 0);
-
-    System.out.print("Initial Stack Values\n");
-    while (!stack.empty()) {
-      System.out.print(stack.pop() + " ");
+        return reversedString.toString();
     }
 
-    System.out.print("\n\nReversed Stack Values\n");
-    while (!reversedStack.empty()) {
-      System.out.print(reversedStack.pop() + " ");
+    public static void main(String[] args) {
+        // Input from user
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.print("Enter a string to reverse: ");
+        String input = scanner.nextLine();
+
+        String reversed = reverseString(input);
+        System.out.println("Reversed string: " + reversed);
+        
+        scanner.close();
     }
-    System.out.print("\n");
-  }
-
-  static void reverse(Stack<String> stack, Stack<String> reversedStack, int initialSize, int index) {
-
-    // Check for when the stack is empty
-    if (stack.empty() || index == initialSize)
-      return;
-
-    String element = stack.pop();
-    reversedStack.push(element);
-
-    // Calls recursive function on modified stack
-    reverse(stack, reversedStack, initialSize, index + 1);
-
-    // Put all items back
-    stack.push(element);
-  }
 }
