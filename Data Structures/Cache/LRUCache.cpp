@@ -1,7 +1,3 @@
-// Least recently used (LRU) cache (https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU)
-// Discards the least recently used items first
-
-
 #include <iostream>
 #include <unordered_map>
 #include <queue>
