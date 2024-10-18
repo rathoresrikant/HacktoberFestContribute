@@ -1,79 +1,84 @@
 // LinkedList Node
-class Node{
-  int val;
-  Node next;
-  
-  Node(int x){
-    this.val = x;
-    this.next = null;
-  }
+class Node {
+    int val;
+    Node next;
+
+    Node(int x) {
+        this.val = x;
+        this.next = null;
+    }
 }
 
-class LinkedList{
-  Node start;
-  int length;
-  
-  LinkedList([Node n=null]){
-    if (n != null) {
-      this.start = n;
-      this.length = 1;
+class LinkedList {
+    Node start;
+    int length;
+
+    LinkedList(Node n) {
+        if (n != null) {
+            this.start = n;
+            this.length = 1;
+        } else {
+            this.start = null;
+            this.length = 0;
+        }
     }
-    else{
-      this.start = null;
-      this.length = 0;
+
+    void insert_end(Node n) {
+        if (this.start == null) {
+            this.start = n;
+            this.length += 1;
+            return;
+        }
+        Node temp = this.start;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = n;
+        this.length += 1;
     }
-  }
-  
-  void insert_end(Node n){
-    if (this.start == null){
-      this.start = n;
-      this.length += 1;
-      return;
+
+    void delete_end() {
+        if (this.start == null) {
+            return;
+        }
+
+        Node temp = this.start;
+        if (temp.next == null) {
+            this.start = null; // Handle case where there's only one node
+            this.length -= 1;
+            return;
+        }
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+        this.length -= 1;
     }
-    Node temp = this.start;
-    while (temp.next != null){
-      temp = temp.next;
+
+    void display() {
+        Node temp = this.start;
+        while (temp != null) {
+            System.out.println(temp.val);
+            temp = temp.next;
+        }
     }
-    temp.next = n;
-    this.length += 1;
-  }
-  
-  void delete_end(){
-    if (this.start == null){
-      return;
-    }
-    
-    Node temp = this.start;
-    while (temp.next.next != null){
-      temp = temp.next;
-    }
-    temp.next = null;
-    this.length -= 1;
-  }
-  
-  void display(){
-    Node temp = this.start;
-    while (temp != null){
-      print(temp.val);
-      temp = temp.next;
-    }
-  }
 }
 
-main(){
-  LinkedList l = LinkedList();
-  l.insert_end(Node(3));
-  l.insert_end(Node(5));
-  l.insert_end(Node(2));
-  l.insert_end(Node(1));
-  l.insert_end(Node(7));
-  
-  l.display();
-  
-  l.delete_end();
-  l.delete_end();
-  
-  l.display();
-}
+public class Main {
+    public static void main(String[] args) {
+        LinkedList l = new LinkedList(null);
+        l.insert_end(new Node(3));
+        l.insert_end(new Node(5));
+        l.insert_end(new Node(2));
+        l.insert_end(new Node(1));
+        l.insert_end(new Node(7));
 
+        l.display();
+
+        l.delete_end();
+        l.delete_end();
+
+        l.display();
+    }
+}
 // This code was contributed by Surya Kant Sahu (https://ojus1.github.io)
