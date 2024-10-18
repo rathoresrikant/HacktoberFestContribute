@@ -1,46 +1,45 @@
-#!/usr/bin/env python3
-
-#Our node class.
 class Node:
-    def __init__(self, value, next_node):
-        self.value = value
-        self.next_node = next_node
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-    def __repr__(self):
-        if self.next_node == None:
-            return repr(self.value)
-        return "{} {}".format(self.value, self.next_node)
+class LinkedList:
+    def __init__(self):
+        self.head = None
 
-    value = None
-    next_node = None
+    def append(self, data):
+        """Add a new node with the given data at the end of the list."""
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
 
-#Make a linked list, given something like an array.
-def make_linked_list(iterable):
-    head = Node(iterable[0], None)
-    tail = head
-    for element in iterable[1:]:
-        new_node = Node(element, None)
-        tail.next_node = new_node
-        tail = new_node
-    return head, tail #We won't use it here, but might as well return the tail
+    def print_middle(self):
+        """Print the middle node of the linked list."""
+        slow = self.head
+        fast = self.head
+        
+        # Move fast by 2 and slow by 1
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        if slow:
+            print("The middle element is:", slow.data)
+        else:
+            print("The list is empty.")
 
-#We won't use it, but have it anyways. You can use it if this was a doubly linked list.
-def get_tail(node):
-    while node.next_node != None:
-        node = node.next_node
-    return node
-
-def get_middle(head):
-    #start both runners at the beginning of the list
-    fast_runner = slow_runner = head
-    while fast_runner.next_node != None and fast_runner.next_node.next_node != None:
-        #Every time, the fast runner moves two spaces and the slow runner moves one.
-        #This means that when the fast runner falls off, the slow runner is in the middle.
-        slow_runner = slow_runner.next_node
-        fast_runner = fast_runner.next_node.next_node
-    return slow_runner
-
-head, tail = make_linked_list([8,6,7,5,3,0,9])
-print(head)
-print(tail)
-print(get_middle(head).value)
+if __name__ == "__main__":
+    linked_list = LinkedList()
+    n = int(input("Enter the number of elements in the linked list: "))
+    
+    print("Enter the elements:")
+    for _ in range(n):
+        number = int(input())
+        linked_list.append(number)
+    
+    linked_list.print_middle()
