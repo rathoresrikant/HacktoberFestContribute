@@ -1,176 +1,145 @@
 import java.util.Scanner;
-class Television
-{
-    private boolean pw,mt;
-    private int vol,chn;
-    public Television()
-    {
-        pw=mt=false;
-        vol=3;
-        chn=1;
+
+class Television {
+    private boolean power; // Indicates if the TV is on or off
+    private boolean muted; // Indicates if the TV is muted
+    private int volume;    // Volume level (0 to 10)
+    private int channel;   // Current channel (1 to 99)
+
+    // Default constructor
+    public Television() {
+        this(false, false, 3, 1); // Default values
     }
 
-    public Television(boolean p,boolean m,int v,int c)
-    {
-        pw=p;
-        mt=m;
-        if(v>=0&&v<=10)
-            vol=v;
-        else
-            vol=3;
-        if(c>=1 && c<=99)
-
-            chn=c;
-        else
-            chn=1;
+    // Parameterized constructor
+    public Television(boolean power, boolean muted, int volume, int channel) {
+        this.power = power;
+        this.muted = muted;
+        this.volume = (volume >= 0 && volume <= 10) ? volume : 3;
+        this.channel = (channel >= 1 && channel <= 99) ? channel : 1;
     }
 
-    public void power()
-    {
-        if(pw==true)
-
-            pw=false;
-        else
-            pw=true;
+    // Toggle power state
+    public void togglePower() {
+        power = !power;
     }
 
-    public void mute()
-    {
-        if(pw==false)
-            return;
-        mt=!mt;
-    }
-
-    public void volumeUp()
-    {
-        if(pw==false)
-            return;
-        else
-        if(vol<10)
-            vol++;
-    }
-
-    public void volumeDn()
-    {
-        if(pw==false)
-            return;
-        mt=false;
-        if(vol>0)
-            vol--;
-    }
-
-    public void channelUp()
-    {
-        if(!pw)
-            pw=true;
-        else
-        {
-            if(chn<99)
-                chn++;
-            else
-                chn=1;
+    // Toggle mute state
+    public void toggleMute() {
+        if (power) {
+            muted = !muted;
         }
     }
 
-    public void channelDn()
-    {
-        if(!pw)
-            pw=true;
-        else
-        {
-            if(chn>1)
-            {
-                chn--;
+    // Increase volume
+    public void increaseVolume() {
+        if (power && volume < 10) {
+            volume++;
+        }
+    }
+
+    // Decrease volume
+    public void decreaseVolume() {
+        if (power && volume > 0) {
+            volume--;
+            muted = false; // Unmute when volume is decreased
+        }
+    }
+
+    // Change to the next channel
+    public void nextChannel() {
+        if (power) {
+            channel = (channel < 99) ? channel + 1 : 1;
+        }
+    }
+
+    // Change to the previous channel
+    public void previousChannel() {
+        if (power) {
+            channel = (channel > 1) ? channel - 1 : 99;
+        }
+    }
+
+    // Set specific channel
+    public void setChannel(int channel) {
+        if (power) {
+            if (channel >= 1 && channel <= 99) {
+                this.channel = channel;
+            } else {
+                System.out.println("Invalid channel. Please enter a channel between 1 and 99.");
             }
-            else
-                chn=99;
         }
     }
 
-    public void channel(int c)
-    {
-        if(!pw)
-            return;
-        if(c>=1&&c<=99)
-            chn=c;
-        else
-            System.out.println("Invalid channel");
-    }
-
-    public void show()
-    {
-        if(!pw)
-        {
-            System.out.println("TV is on");
-        }
-        else
-        {
-            System.out.println("TV is off");
-            System.out.println("channel is in"+" "+chn);
-            if(mt)
-            {
+    // Display current state of the TV
+    public void displayStatus() {
+        if (power) {
+            System.out.println("TV is ON");
+            System.out.println("Current Channel: " + channel);
+            if (muted) {
                 System.out.println("TV is muted");
+            } else {
+                System.out.println("Volume Level: " + volume);
             }
-            else
-            {
-
-                System.out.println("volume is in"+" "+vol);
-            }
+        } else {
+            System.out.println("TV is OFF");
         }
     }
-        public static void main()
-        {
-            Television tv=new Television();
-            tv.show();
-            while(true)
-            {
-                System.out.println("1. Power on/off");
-                System.out.println("2. Mute on/off");
-                System.out.println("3. Voiume up");
-                System.out.println("4. Volume down");
-                System.out.println("5. Channel up");
-                System.out.println("6. Channel down");
-                System.out.println("7. Channel ");
-                System.out.println("0. Exit");
-                
-                int ch;
-                System.out.println("Enter your choice");
-                Scanner sc=new Scanner(System.in);
-                ch=sc.nextInt();
-                if(ch==0)
-                break;
-                switch(ch)
-                {
-                    case 1:
-                    tv.power();
+
+    // Main method for user interaction
+    public static void main(String[] args) {
+        Television tv = new Television();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            tv.displayStatus(); // Show current status
+            System.out.println("\nMenu:");
+            System.out.println("1. Toggle Power");
+            System.out.println("2. Toggle Mute");
+            System.out.println("3. Increase Volume");
+            System.out.println("4. Decrease Volume");
+            System.out.println("5. Next Channel");
+            System.out.println("6. Previous Channel");
+            System.out.println("7. Set Channel");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    tv.togglePower();
                     break;
-                    case 2:
-                    tv.mute();
+                case 2:
+                    tv.toggleMute();
                     break;
-                    case 3:
-                    tv.volumeUp();
+                case 3:
+                    tv.increaseVolume();
                     break;
-                    case 4:
-                    tv.volumeDn();
+                case 4:
+                    tv.decreaseVolume();
                     break;
-                    case 5:
-                    tv.channelUp();
+                case 5:
+                    tv.nextChannel();
                     break;
-                    case 6:
-                    tv.channelDn();
+                case 6:
+                    tv.previousChannel();
                     break;
-                    case 7:
-                    int c;
-                    System.out.println("Enter your choice");
-                    c=sc.nextInt();
-                    tv.channel(c);
+                case 7:
+                    System.out.print("Enter channel number (1-99): ");
+                    int channel = scanner.nextInt();
+                    tv.setChannel(channel);
                     break;
-                    default:
-                    System.out.println("Wrong Choice");
-                }
-                
-                    tv.show();
-                
-                }
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
-        }
+
+        } while (choice != 0);
+
+        scanner.close();
+    }
+}
