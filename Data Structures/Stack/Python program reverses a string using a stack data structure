@@ -1,0 +1,43 @@
+def reverse_string_with_stack(s):
+    # Initialize an empty stack
+    stack = []
+    
+    # Push all characters of the string onto the stack
+    for char in s:
+        stack.append(char)
+    
+    # Pop all characters from the stack to get them in reverse order
+    reversed_string = ''
+    while stack:
+        reversed_string += stack.pop()
+    
+    return reversed_string
+
+if __name__ == "__main__":
+    # Get user input
+    input_string = input("Enter a string to reverse: ")
+    
+    # Check if the input string is empty
+    if not input_string:
+        print("You entered an empty string.")
+    else:
+        reversed_string = reverse_string_with_stack(input_string)
+        print(f"Original string: {input_string}")
+        print(f"Reversed string: {reversed_string}")
+
+    # Extra functionality: Ask if the user wants to reverse another string
+    while True:
+        another = input("Do you want to reverse another string? (yes/no): ").strip().lower()
+        if another == 'yes':
+            input_string = input("Enter a string to reverse: ")
+            if not input_string:
+                print("You entered an empty string.")
+            else:
+                reversed_string = reverse_string_with_stack(input_string)
+                print(f"Original string: {input_string}")
+                print(f"Reversed string: {reversed_string}")
+        elif another == 'no':
+            print("Goodbye!")
+            break
+        else:
+            print("Please answer with 'yes' or 'no'.")
