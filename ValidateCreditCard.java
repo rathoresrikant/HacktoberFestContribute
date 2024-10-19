@@ -1,124 +1,123 @@
-import java.util.*;
-public class Test {
+import java.util.Scanner;
 
-   public static void main(String args[]) 
-   {int sum1=0;
-       int sum2=0;
-       int sum=0;
-       String t;
-       boolean isvalid=false;
-       System.out.println("Please enter your cradit card number");
-       Scanner d=new Scanner(System.in);
-       t=d.nextLine();
-      isvalid =check(t);
-      System.out.println(isvalid);
-      if(isvalid==true)
-      {
-          int k;
-          for(int x=(t.length())-2;x>=0;x-=2)
-          {
-              char c=t.charAt(x);
-              int b=Integer.parseInt(c+"");
-              int r=b*2;
-              if(r>9)
-              {
-                 k=r%10+r/10;
-                sum1+=k;
-            }
-            else
-            {
-                sum1+=r;
-            
+public class CardValidator {
+
+    public static void main(String[] args) {
+        System.out.println("Please enter your card number:");
+        Scanner scanner = new Scanner(System.in);
+        String cardNumber = scanner.nextLine();
+
+        if (isValidCardNumber(cardNumber)) {
+            System.out.println("Card number is valid.");
+            identifyCardType(cardNumber);
+            displayAccountNumber(cardNumber);
+        } else {
+            System.out.println("Card number is not valid.");
+            suggestCheckDigit(cardNumber);
+        }
+        scanner.close();
+    }
+
+    // Validate card number using Luhn's algorithm
+    private static boolean isValidCardNumber(String cardNumber) {
+        if (!isNumeric(cardNumber) || !(cardNumber.length() >= 12 && cardNumber.length() <= 19)) {
+            return false;
+        }
+        
+        int sum1 = 0, sum2 = 0;
+
+        for (int x = cardNumber.length() - 2; x >= 0; x -= 2) {
+            int digit = Character.getNumericValue(cardNumber.charAt(x));
+            int doubled = digit * 2;
+            sum1 += (doubled > 9) ? (doubled % 10 + 1) : doubled;
+        }
+
+        for (int x = cardNumber.length() - 1; x >= 0; x -= 2) {
+            sum2 += Character.getNumericValue(cardNumber.charAt(x));
+        }
+
+        int totalSum = sum1 + sum2;
+        return totalSum % 10 == 0;
+    }
+
+    // Check if the string is numeric
+    private static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
             }
         }
-            
-            for(int x=(t.length())-1;x>=0;x-=2)
-            {
-                char c=t.charAt(x);
-                int g=Integer.parseInt(c+"");
-                sum2+=g;
-            }
-        sum=sum1+sum2;         
-         if(sum%10==0)
-       {
-        System.out.println("credit card number is valid");
-       MII(t);
-       IIN(t);
-       account(t);
-      }
-    else
-    {System.out.println("Not valid");
-     char f=t.charAt(t.length()-1);
-     int u=Integer.parseInt(f+"");
-     int i=sum-u;
-     int x=i%10;
-     int z=10-x;
-     
-     System.out.println("Check Digit will be:"+z);
-        
+        return true;
     }
+
+    // Identify card type based on the number
+    private static void identifyCardType(String cardNumber) {
+        String firstDigit = String.valueOf(cardNumber.charAt(0));
+        String firstTwoDigits = cardNumber.substring(0, 2);
+        String firstFourDigits = cardNumber.substring(0, 4);
+
+        switch (firstDigit) {
+            case "3":
+                System.out.println("Card Type: Travel/Entertainment (Amex)");
+                break;
+            case "4":
+                System.out.println("Card Type: Visa");
+                break;
+            case "5":
+                System.out.println("Card Type: Mastercard");
+                break;
+            case "6":
+                System.out.println("Card Type: Discover/Merchandising");
+                break;
+            case "7":
+                System.out.println("Card Type: Petroleum");
+                break;
+            case "8":
+                System.out.println("Card Type: Healthcare and Telecommunications");
+                break;
+            default:
+                System.out.println("Card Type: Unknown");
+                break;
+        }
         
-    }
-}
-    public static boolean check(String s)
-    {
-        int count=0;
-     for(int x=0;x<s.length();x++)
-     {
-         char c=s.charAt(x);
-        if(Character.isDigit(c))
-        {
-         count++;
+        // Additional checks for specific card ranges
+        if (firstTwoDigits.equals("34") || firstTwoDigits.equals("37")) {
+            System.out.println("Card Type: American Express");
+        } else if (firstTwoDigits.matches("51|52|53|54|55")) {
+            System.out.println("Card Type: Mastercard");
+        } else if (firstFourDigits.equals("6011") || firstFourDigits.matches("644|65")) {
+            System.out.println("Card Type: Discover");
         }
     }
-         if(count==s.length()&&(s.length()>=12||s.length()<=19))
-         return true;
-        else
-        return false;
+
+    // Display account number extracted from the card number
+    private static void displayAccountNumber(String cardNumber) {
+        String accountNumber = cardNumber.substring(6, cardNumber.length() - 1);
+        System.out.println("Account Number: " + accountNumber);
+    }
+
+    // Suggest a check digit if the card number is not valid
+    private static void suggestCheckDigit(String cardNumber) {
+        char lastDigit = cardNumber.charAt(cardNumber.length() - 1);
+        int sum = calculateLuhnSum(cardNumber.substring(0, cardNumber.length() - 1));
+        int checkDigit = (10 - (sum % 10)) % 10;
+        System.out.println("Suggested Check Digit: " + checkDigit);
+    }
+
+    // Calculate sum for Luhn's algorithm excluding the last digit
+    private static int calculateLuhnSum(String number) {
+        int sum1 = 0, sum2 = 0;
+
+        for (int x = number.length() - 2; x >= 0; x -= 2) {
+            int digit = Character.getNumericValue(number.charAt(x));
+            int doubled = digit * 2;
+            sum1 += (doubled > 9) ? (doubled % 10 + 1) : doubled;
+        }
+
+        for (int x = number.length() - 1; x >= 0; x -= 2) {
+            sum2 += Character.getNumericValue(number.charAt(x));
+        }
+
+        return sum1 + sum2;
+    }
 }
-public static void MII(String n)
-               {
-                   if(n.charAt(0)=='1'||n.charAt(0)=='2')
-                                     System.out.println("Airlines");
-                                     else
-                                         if(n.charAt(0)=='3')
-                                     System.out.println("Travel");
-                                     else
-                                         if(n.charAt(0)=='4'||n.charAt(0)=='5')
-                                     System.out.println("Banking And Financial");
-                                     else
-                                        if(n.charAt(0)=='6')
-                                           System.out.println("Merchandising And Banking/Financial"); 
-                                    else
-                                          if(n.charAt(0)=='7')
-                                        System.out.println("Petrolium");
-                                        else
-                                            if(n.charAt(0)=='8')
-                                               System.out.println("Healthcare And Telecommunications");
-                                               else
-                    
-                                  System.out.println("Unknown");  
-                    } 
-                    public static void IIN(String h)
-                    {
-                        String q=h.substring(0,2);
-                        String o=h.substring(0,1);
-                        String p=h.substring(0,4);
-                        if(q.equals("34")||q.equals("37"))
-                        System.out.println("Amex");
-                        else if(q.equals("51")||q.equals("52")||q.equals("53")||q.equals("54")||q.equals("55"))
-                        System.out.println("Mastercard");
-                        else if(o.equals("4"))
-                        System.out.println("Visa");
-                        else if(p.equals("6011")||p.equals("644")||p.equals("65"))
-                        System.out.println("Discover");
-                        else
-                        System.out.println("Unknown");
-                    }
-                    public static void account(String v)
-                    {
-                        String w=v.substring(7,v.length()-1);
-                        System.out.println("Account Number is"+' '+w);  
-                        
-                    }
-      
