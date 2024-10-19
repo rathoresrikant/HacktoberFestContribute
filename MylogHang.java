@@ -1,123 +1,92 @@
 import java.util.Scanner;
 import java.util.Random;
-class Hangman
-{   
 
-    public static void main(String[] args)
-    {   
-        System.out.println(" @@@@@@@@@@@@@ PLAY HANGMAN @@@@@@@@@@@@@" );
-        String[] s={"DELHI","KARACHI","NEWYORK","LONDON","TOKYO","SURAT","KABUL","DUBAI","JAIPUR","PUNE"};
-        Random r=new Random();
+class Hangman {
+    private static final String[] CITIES = {
+        "DELHI", "KARACHI", "NEWYORK", "LONDON", "TOKYO", 
+        "SURAT", "KABUL", "DUBAI", "JAIPUR", "PUNE"
+    };
+    private static final int MAX_LIVES = 10;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        boolean playAgain;
+
+        do {
+            String cityToGuess = CITIES[random.nextInt(CITIES.length)];
+            playGame(scanner, cityToGuess);
+            playAgain = askToPlayAgain(scanner);
+        } while (playAgain);
+
+        System.out.println("Thank you for playing Hangman!");
+        scanner.close();
+    }
+
+    private static void playGame(Scanner scanner, String cityToGuess) {
+        StringBuilder currentGuess = new StringBuilder("_".repeat(cityToGuess.length()));
+        StringBuilder incorrectGuesses = new StringBuilder();
+        int numLives = 0;
+
         System.out.println("GUESS THE WORLD'S LARGEST CITY");
-        System.out.println("Rule: You have 10 chances for correct guess");
-        for(;;)
-        {
+        System.out.println("Rule: You have " + MAX_LIVES + " chances to guess the correct letters.");
 
-            int randomNumber=r.nextInt(s.length);
-            String sw=s[randomNumber];
+        while (numLives < MAX_LIVES) {
+            displayCurrentState(currentGuess, incorrectGuesses);
+            char guessedLetter = getValidGuess(scanner, incorrectGuesses, currentGuess);
 
-            String incorrect="";
-
-            String guess="";
-            Scanner sc=new Scanner(System.in);
-            
-            for(int x=0;x<sw.length();x++)
-            {
-                guess+="_";
-
-            }
-            int numLives=0;
-            for(;;)
-            {   
-
-                System.out.println("YOUR CORRECT GUESSES");
-                for(int x=0;x<sw.length();x++)
-                {
-                    char p=guess.charAt(x);
-                    System.out.print(p+" ");
-                }
-                System.out.println();
-                System.out.println("GUESS A LETTER");
-                String l=sc.nextLine().toUpperCase();
-                char c=l.charAt(0);
-                String ssw="";
-                if(incorrect.indexOf(c)!=-1)
-                    continue;
-                else if(guess.indexOf(c)!=-1)
-                    continue;
-                else if(incorrect.indexOf(c)==-1)
-                {
-                    if(sw.indexOf(c)!=-1 && guess.indexOf(c)==-1)
-
-                    {
-                        for(int x=0;x<sw.length();x++)
-                        {
-                            char a=sw.charAt(x);
-                            char b=guess.charAt(x);
-                            if(a==c)
-                            {
-                                ssw+=c;
-                            }
-                            else
-                            {
-                                ssw+=b;
-                            }
-                        }
-                        guess=ssw;
-                    }
-
-                    else
-                    {
-                        incorrect+=c;
-
-                        System.out.println("MISSES = "+incorrect);
-                        numLives++;
-                        
-                    }
-                }
-
-                if(guess.indexOf('_')==-1 )
-                    break;
-                if(numLives==10)
-                    break;
-            }
-            System.out.println();
-            if(guess.indexOf('_')!=-1) 
-            {System.out.println(sw);
-                System.out.println("@@ YOU HAVE LOST THE GAME @@ ");}
-            else
-            {System.out.print(sw);
-                System.out.println("@@ WON! CONGRATULATION GET YOUR PRICE @@");
-            }
-            String Q;
-            char P=0;
-            System.out.println("DO YOU WANT TO CONTINUE PLAY AGAIN IF YES THEN CLICK Y OR IF NOT THEN CLICK SOMETHING ELSE");
-            boolean repeat=false;
-            do
-            {
-                repeat=false;
-                try
-                {
-                    Q=sc.nextLine();
-                    P=Q.charAt(0);
-                    if(!Character.isLetter(P))
-                        throw new Exception();
-                }
-                catch (Exception e)
-                {
-                    repeat=true;
-                }
-            }
-            while(repeat==true);
-            if(P=='y'||P=='Y')
-                continue;
-            else
-            {
-                break;
-
+            if (cityToGuess.indexOf(guessedLetter) != -1) {
+                updateGuess(cityToGuess, currentGuess, guessedLetter);
+            } else {
+                incorrectGuesses.append(guessedLetter);
+                numLives++;
+                System.out.println("MISSES = " + incorrectGuesses);
             }
 
+            if (currentGuess.indexOf("_") == -1) {
+                System.out.println("Congratulations! You've guessed the city: " + cityToGuess);
+                return;
+            }
         }
 
+        System.out.println("You've run out of lives! The city was: " + cityToGuess);
     }
-}       
+
+    private static void displayCurrentState(StringBuilder currentGuess, StringBuilder incorrectGuesses) {
+        System.out.println("YOUR CURRENT GUESSES: " + currentGuess);
+        System.out.println("INCORRECT GUESSES: " + incorrectGuesses);
+    }
+
+    private static char getValidGuess(Scanner scanner, StringBuilder incorrectGuesses, StringBuilder currentGuess) {
+        char guessedLetter;
+        while (true) {
+            System.out.print("GUESS A LETTER: ");
+            String input = scanner.nextLine().toUpperCase();
+            if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
+                System.out.println("Please enter a single letter.");
+                continue;
+            }
+            guessedLetter = input.charAt(0);
+            if (incorrectGuesses.indexOf(String.valueOf(guessedLetter)) != -1 || currentGuess.indexOf(String.valueOf(guessedLetter)) != -1) {
+                System.out.println("You've already guessed that letter. Try again.");
+            } else {
+                break;
+            }
+        }
+        return guessedLetter;
+    }
+
+    private static void updateGuess(String cityToGuess, StringBuilder currentGuess, char guessedLetter) {
+        for (int i = 0; i < cityToGuess.length(); i++) {
+            if (cityToGuess.charAt(i) == guessedLetter) {
+                currentGuess.setCharAt(i, guessedLetter);
+            }
+        }
+    }
+
+    private static boolean askToPlayAgain(Scanner scanner) {
+        System.out.print("DO YOU WANT TO PLAY AGAIN? (Y/N): ");
+        String response = scanner.nextLine().trim().toUpperCase();
+        return response.equals("Y");
+    }
+}
