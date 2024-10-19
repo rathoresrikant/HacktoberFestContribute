@@ -1,0 +1,91 @@
+def find_peak_1d(arr):
+    def helper(left, right):
+        mid = (left + right) // 2
+        
+        # Check if mid is a peak
+        if (mid == 0 or arr[mid] >= arr[mid - 1]) and (mid == len(arr) - 1 or arr[mid] >= arr[mid + 1]):
+            return arr[mid]
+        
+        # If left neighbor is greater, search left half
+        elif mid > 0 and arr[mid - 1] > arr[mid]:
+            return helper(left, mid - 1)
+        
+        # If right neighbor is greater, search right half
+        else:
+            return helper(mid + 1, right)
+
+    return helper(0, len(arr) - 1)
+
+
+def find_peak_2d(arr):
+    def helper(left, right, top, bottom):
+        mid_col = (left + right) // 2
+        max_row = top
+        
+        # Find the maximum element in the middle column
+        for row in range(top, bottom + 1):
+            if arr[row][mid_col] > arr[max_row][mid_col]:
+                max_row = row
+        
+        # Check if the middle column's maximum is a peak
+        if (mid_col == 0 or arr[max_row][mid_col] >= arr[max_row][mid_col - 1]) and \
+           (mid_col == len(arr[0]) - 1 or arr[max_row][mid_col] >= arr[max_row][mid_col + 1]):
+            return arr[max_row][mid_col]
+        
+        # If left neighbor is greater, search left half
+        elif mid_col > 0 and arr[max_row][mid_col - 1] > arr[max_row][mid_col]:
+            return helper(left, mid_col - 1, top, bottom)
+        
+        # If right neighbor is greater, search right half
+        else:
+            return helper(mid_col + 1, right, top, bottom)
+
+    return helper(0, len(arr[0]) - 1, 0, len(arr) - 1)
+
+
+# Function to get a valid 1D array input from the user
+def get_1d_array():
+    while True:
+        try:
+            user_input = input("Enter elements of the 1D array separated by spaces: ")
+            arr = list(map(int, user_input.split()))
+            if not arr:
+                raise ValueError("Array cannot be empty.")
+            return arr
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again.")
+
+# Function to get a valid 2D array input from the user
+def get_2d_array():
+    while True:
+        try:
+            rows = int(input("Enter the number of rows for the 2D array: "))
+            if rows <= 0:
+                raise ValueError("Number of rows must be positive.")
+            arr_2d = []
+            for i in range(rows):
+                while True:
+                    try:
+                        row_input = input(f"Enter elements of row {i + 1} separated by spaces: ")
+                        row = list(map(int, row_input.split()))
+                        if not row:
+                            raise ValueError("Row cannot be empty.")
+                        arr_2d.append(row)
+                        break
+                    except ValueError as e:
+                        print(f"Invalid input: {e}. Please try again.")
+            return arr_2d
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again.")
+
+
+if __name__ == "__main__":
+    # Get 1D array input from user
+    arr_1d = get_1d_array()
+    peak_1d = find_peak_1d(arr_1d)
+    print(f"1D Peak found: {peak_1d}")
+
+    # Get 2D array input from user
+    arr_2d = get_2d_array()
+    peak_2d = find_peak_2d(arr_2d)
+    print(f"2D Peak found: {peak_2d}")
