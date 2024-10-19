@@ -1,55 +1,57 @@
 public class NodeAVL {
-	Data data;
-	NodeAVL left;
-	NodeAVL right;
-	NodeAVL top;
-	int balance;
-	
-	NodeAVL(Data data) {
-		this.setData(data);
-		this.setLeft(null);
-		this.setRight(null);
-		this.setTop(null);
-		this.setBalance(0);
-	}
-	
-	public Data getData() {
-		return data;
-	}
+    private Data data;       // Encapsulated fields
+    private NodeAVL left;
+    private NodeAVL right;
+    private NodeAVL top;
+    private int balance;
 
-	public void setData(Data data) {
-		this.data = data;
-	}
+    // Constructor
+    public NodeAVL(Data data) {
+        this.data = data;      // Directly assigning values
+        this.left = null;
+        this.right = null;
+        this.top = null;
+        this.balance = 0;
+    }
 
-	public NodeAVL getLeft() {
-		return left;
-	}
+    // Getters and Setters
+    public Data getData() {
+        return data;
+    }
 
-	public void setLeft(NodeAVL left) {
-		this.left = left;
-	}
+    public void setData(Data data) {
+        this.data = data;
+    }
 
-	public NodeAVL getRight() {
-		return right;
-	}
+    public NodeAVL getLeft() {
+        return left;
+    }
 
-	public void setRight(NodeAVL right) {
-		this.right = right;
-	}
-	
-	public NodeAVL getTop() {
-		return top;
-	}
+    public void setLeft(NodeAVL left) {
+        this.left = left;
+    }
 
-	public void setTop(NodeAVL top) {
-		this.top = top;
-	}
+    public NodeAVL getRight() {
+        return right;
+    }
 
-	public int getBalance() {
-		return balance;
-	}
+    public void setRight(NodeAVL right) {
+        this.right = right;
+    }
 
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
+    public NodeAVL getTop() {
+        return top;
+    }
+
+    public void setTop(NodeAVL top) {
+        this.top = top;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }
