@@ -1,0 +1,124 @@
+class Node:
+    """A node in a circular linked list."""
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedList:
+    """A circular linked list."""
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        """Append a node to the end of the list."""
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            self.head.next = self.head  # Point to itself
+        else:
+            current = self.head
+            while current.next != self.head:
+                current = current.next
+            current.next = new_node
+            new_node.next = self.head
+
+    def prepend(self, data):
+        """Prepend a node to the start of the list."""
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            self.head.next = self.head
+        else:
+            current = self.head
+            while current.next != self.head:
+                current = current.next
+            new_node.next = self.head
+            current.next = new_node
+            self.head = new_node
+
+    def delete(self, key):
+        """Delete the first occurrence of the key in the list."""
+        if not self.head:
+            return
+
+        current = self.head
+        previous = None
+
+        # Check if the node to be deleted is the head
+        if current.data == key:
+            # If it's the only node in the list
+            if current.next == self.head:
+                self.head = None
+                return
+            else:
+                # Find the last node
+                while current.next != self.head:
+                    current = current.next
+                current.next = self.head.next
+                self.head = self.head.next
+                return
+
+        # Traverse the list to find the key
+        while current.next != self.head:
+            previous = current
+            current = current.next
+            if current.data == key:
+                previous.next = current.next
+                return
+
+    def display(self):
+        """Display the list."""
+        if not self.head:
+            print("List is empty.")
+            return
+        
+        current = self.head
+        print("Circular Linked List: ", end="")
+        while True:
+            print(current.data, end=" -> ")
+            current = current.next
+            if current == self.head:
+                break
+        print("(head)")
+
+    def search(self, key):
+        """Search for a node with the given key."""
+        if not self.head:
+            return False
+        
+        current = self.head
+        while True:
+            if current.data == key:
+                return True
+            current = current.next
+            if current == self.head:
+                break
+        return False
+
+if __name__ == "__main__":
+    cll = CircularLinkedList()
+
+    # Append nodes
+    cll.append(10)
+    cll.append(20)
+    cll.append(30)
+    cll.display()
+
+    # Prepend nodes
+    cll.prepend(5)
+    cll.display()
+
+    # Delete a node
+    cll.delete(20)
+    cll.display()
+
+    # Search for a node
+    if cll.search(10):
+        print("10 found in the list.")
+    else:
+        print("10 not found in the list.")
+
+    if cll.search(20):
+        print("20 found in the list.")
+    else:
+        print("20 not found in the list.")
