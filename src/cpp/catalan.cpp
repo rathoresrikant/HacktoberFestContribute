@@ -1,24 +1,36 @@
-#include<iostream> 
-using namespace std; 
+#include <iostream>
+#include <vector>
+using namespace std;
 
-// A recursive function to find nth catalan number 
-unsigned long int catalan(unsigned int n) 
-{ 
-	// Base case 
-	if (n <= 1) return 1; 
+// Function to find the nth Catalan number using dynamic programming
+unsigned long int catalan(unsigned int n) {
+    // Create a table to store results of subproblems
+    vector<unsigned long int> catalanTable(n + 1, 0);
+    
+    // Base case
+    catalanTable[0] = 1;
+    catalanTable[1] = 1;
 
-	// catalan(n) is sum of catalan(i)*catalan(n-i-1) 
-	unsigned long int res = 0; 
-	for (int i=0; i<n; i++) 
-		res += catalan(i)*catalan(n-i-1); 
+    // Fill the catalanTable using previously calculated values
+    for (int i = 2; i <= n; i++) {
+        for (int j = 0; j < i; j++) {
+            catalanTable[i] += catalanTable[j] * catalanTable[i - j - 1];
+        }
+    }
 
-	return res; 
-} 
+    return catalanTable[n];
+}
 
-// Driver program to test above function 
-int main() 
-{ 
-	for (int i=0; i<n; i++) 
-		cout << catalan(i) << " "; 
-	return 0; 
-} 
+// Driver program to test above function
+int main() {
+    unsigned int n;
+    cout << "Enter the value of n: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cout << catalan(i) << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
